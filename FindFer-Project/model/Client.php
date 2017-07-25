@@ -6,13 +6,17 @@ Class Client implements User{
 	private $name;
 	private $location;
 	private $marketers;
-	
-	public function registerUser() {
-		
+	function __construct($name) {
+            $this->name=$name;
+        }
+
+
+        public function registerUser() {
+		return $this->name;
 	}
 	
 	public function requestRelationship() {
-		
+		return NULL;
 	}
 }
 ?>
