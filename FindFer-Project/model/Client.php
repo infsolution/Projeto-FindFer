@@ -1,13 +1,18 @@
 <?php
 
-include 'User.php';
+require_once 'User.php';
 
 Class Client implements User{
-	private $name;
-	private $location;
-	private $marketers;
-	function __construct($name) {
+        private $idClient;
+        private $name;
+        private $qualification;
+        private $coordinates;
+        private $account;
+        private $marketers;
+        private $media;
+	function __construct($name, $coordinates) {
             $this->name=$name;
+            $this->coordinates = $coordinates;
         }
 
 
@@ -18,5 +23,10 @@ Class Client implements User{
 	public function requestRelationship() {
 		return NULL;
 	}
+
+    public function changeAccount() {
+        
+    }
+
 }
 ?>

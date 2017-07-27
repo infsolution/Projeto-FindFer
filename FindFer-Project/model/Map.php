@@ -1,6 +1,10 @@
 <?php
 
 Class Map{
-	private $fairs;
+    private $idMap;
+    private $markets;
+    function __construct($markets) {
+        $this->markets = $markets;
+    }
 	 
 }
