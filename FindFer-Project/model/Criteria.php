@@ -1,9 +1,13 @@
 <?php
+require_once 'Expression.php';
 class Criteria extends Expression{
     private $expressions;
     private $operators;
     private $properties;
     
+    function __construct() {
+        
+    }
             
     function add(Expression $expression, $operator = self::AND_OPERATOR){
         if(empty($this->expressions)){

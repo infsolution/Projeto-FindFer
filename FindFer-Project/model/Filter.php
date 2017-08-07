@@ -1,4 +1,5 @@
 <?php
+require_once 'Expression.php';
 class Filter extends Expression{
     private $variable;
     private $operator;
