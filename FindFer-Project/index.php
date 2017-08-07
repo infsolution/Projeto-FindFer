@@ -11,7 +11,14 @@ and open the template in the editor.
     </head>
     <body>
         <?php
-        // put your code here
+        require_once 'model/Connection.php';
+        $con = new Connection();
+        $con->connect();
+        $res = $con->select('media_type');
+        var_dump($res);
+        foreach ($res as $value) {
+            echo $value['id_media_type']."\n".$value['name_type']."<br/>";
+}
         ?>
     </body>
 </html>

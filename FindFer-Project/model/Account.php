@@ -1,5 +1,6 @@
 <?php
-class Account{
+require_once 'TypeAccount.php';
+class Account extends TypeAccount{
     private $idAccount;
     private $typeAccount;
     private $value;
@@ -9,4 +10,11 @@ class Account{
     function __construct($typeAccount) {
         $this->typeAccount = $typeAccount;
     }
+
+    public function getBenefit() {
+        if($this->typeAccount == TypeAccount::FREE){
+            $this->value = 0.0;
+        }
+    }
+
 }
