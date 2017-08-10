@@ -11,14 +11,19 @@ and open the template in the editor.
     </head>
     <body>
         <?php
-        require_once 'model/Connection.php';
-        $con = new Connection();
-        $con->connect();
-        $res = $con->select('media_type');
-        var_dump($res);
-        foreach ($res as $value) {
-            echo $value['id_media_type']."\n".$value['name_type']."<br/>";
-}
+        require_once 'model/Client.php';
+        $cli = new Client('Marcelia', 29);
+        $cli->setidClient(2);
+        $cli->setMedia(21);
+        $cli->setAccount(0);
+        $cli->setQualification(0);
+        //$cli->registerUser();
+        //$cli->changeAccount(4);
+        //echo $cli->ToString();
+        //$feirantes = $cli->getMarketer();
+        //var_dump($feirantes);
+        //$cli->requestRelationship(5);
+        var_dump($cli->listMarketer());
         ?>
     </body>
 </html>

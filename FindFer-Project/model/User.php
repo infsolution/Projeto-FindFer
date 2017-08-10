@@ -1,6 +1,6 @@
 <?php
 interface User{
     function registerUser();
-    function requestRelationship();
-    function changeAccount();
+    function requestRelationship($idUser);
+    function changeAccount($newAccount);
 }

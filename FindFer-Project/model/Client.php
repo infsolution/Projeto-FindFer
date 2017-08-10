@@ -12,7 +12,7 @@ Class Client implements User{
         private $marketers;
         private $media;
         private $connection;
-                function __construct($name, $coordinates) {
+        function __construct($name, $coordinates) {
             $this->name=$name;
             $this->coordinates = $coordinates;
             $this->connection = new Connection();
@@ -32,7 +32,7 @@ Class Client implements User{
         function getQualification(){
             return $this->qualification;
         }
-        function setQualification($qualification){//TODO - Refactory Tornar atributo qualificação em um classe e uma tabela no DB
+        function setQualification($qualification){
             $this->qualification = $qualification;
         }
         function getAccount(){
@@ -43,10 +43,18 @@ Class Client implements User{
         }
                 
         function getMarketer(){//Lista de Feirantes
+            $this->marketers=[];
+            $data = $this->connection->select('relationship','WHERE id_client='.$this->idClient);
+            if(!$data){
+                $data = array('id_relationship'=>0,'id_marketer'=>0,'id_client'=>0,'date_relationship'=>'0000-00-00');
+            }
+            foreach ($data as $value) {
+                $this->marketers[]=$value;
+            }
             return $this->marketers;
         }
-        function setMarketer($marketer){//Implementação de Lista
-            $this->marketers=$marketer;
+        function addMarketer($marketer){//Implementação de Lista
+            
         }
         function getMedia(){
             return $this->media;
@@ -55,25 +63,31 @@ Class Client implements User{
             $this->media=$media;
         }
 
-        public function registerUser() {
-            $this->connection->connect();
+        public function registerUser() {//Usa a funçao insert de Connection -- Exclusivo de User
+            $client = array('name_user' => $this->name, 'id_conta' => 1,
+                            'qualification' => 0, 'id_media' =>  $this->media,
+                            'id_coordinate' =>  $this->coordinates);
+            $this->connection->insert('user', $client);
             
-           
-            //return $this->name;
 	}
-        function listClient($columns){
-            $this->connection->connect();
-             
-            return $list;
+        function listMarketer(){
+             $marketer = $this->connection->select('user');
+            return $marketer;
         }
 
 
-        public function requestRelationship() {
-		return NULL;
+        public function requestRelationship($idUser) {//Exclusivo de User
+            $date = date("Y-m-d");
+            $data = array('id_marketer'=>$idUser, 'id_client'=>  $this->idClient,'date_relationship'=>$date);
+            $this->connection->insert('relationship', $data);
 	}
 
-        public function changeAccount() {
-
+        public function changeAccount($newAccount) {//Usa a Função Update de Connection -- Exclusivo de User
+            $data = array("id_conta"=>$newAccount);
+            $this->connection->update('user', $data," id_user = ".$this->idClient);
+        }
+        function ToString(){
+            return "Nome: ".$this->name." Qualificação: ".$this->qualification."<br/>";
         }
 
 }

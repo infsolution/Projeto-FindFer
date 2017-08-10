@@ -51,8 +51,9 @@ class Connection{
             $fields[]="{$key}='{$value}'";
         }
         $fields = implode(', ', $fields);
-        $where = ($where)?"WHERE {$where}":null;
+        $where = ($where)?" WHERE {$where}":null;
         $query = "UPDATE {$table} SET {$fields}{$where}";
+        echo $query;
         return $this->execute($query);
     }
     function delete($table,$where){
@@ -63,11 +64,10 @@ class Connection{
     function select($table, $params = null,$fields='*'){
         $params = ($params)?" {$params}":null;
         $query = "SELECT {$fields} FROM {$table}{$params}";
-        echo $params;
         $link = $this->connect();
         $result = $link->query($query)->fetchAll(PDO::FETCH_ASSOC);
         if(!$result){
-            return false;
+            return array('id_user'=>0,'name_user'=>'Nenhum usuário encontrado', 'id_conta'=>0,'qualification'=>0,'id_media'=>0,'id_coordinate'=>0);
         }
         return $result;
     }
