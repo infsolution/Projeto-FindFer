@@ -8,5 +8,11 @@ Class Coordinate{
             $this->longitude = $longitude;
             $this->latitude = $latitude;
         }
+        function getLongitude(){
+            return $this->longitude;
+        }
+        function getLatitude(){
+            return $this->latitude;
+        }
 	
 }
