@@ -38,5 +38,17 @@ class MarketStall{
     function setMedia($media){
         $this->media=$media;
     }
+    public function registerMarketStall() {//Insert
+            $mktstall = array('name_mktstall' => $this->name, 'id_mktstall' => $this->idMarketStall,
+                            'marketer' => $this->marketer, 'media' =>  $this->media,
+                            'id_coordinate' =>  $this->coordinates);
+            $this->connection->insert('mktstall', $mktstall);
+            
+	}
+    public function changeAccount($newAccount) {//Update (TODO/A fazer)
+            $data = array("id_conta"=>$newAccount);
+            $this->connection->update('user', $data," id_user = ".$this->idClient);
+        }
+    //GetMarketer já tem, com os getters/setters
 }
 
