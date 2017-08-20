@@ -22,7 +22,7 @@ and open the template in the editor.
         //echo $cli->ToString();
         //$feirantes = $cli->getMarketer();
         //var_dump($feirantes);
-        //$cli->requestRelationship(5);
+        $cli->requestRelationship(5);
         var_dump($cli->listMarketer());
         ?>
     </body>
