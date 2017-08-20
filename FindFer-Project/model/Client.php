@@ -11,6 +11,7 @@ Class Client implements User{
         private $coordinates;
         private $marketers;
         private $media;
+        private $notify;
         private $connection;
         function __construct($name, $coordinates) {
             $this->name=$name;
@@ -42,7 +43,7 @@ Class Client implements User{
             $this->account = $account;
         }
                 
-        function getMarketer(){//Lista de Feirantes
+        function getMarketer(){
             $this->marketers=[];
             $data = $this->connection->select('relationship','WHERE id_client='.$this->idClient);
             if(!$data){
@@ -62,6 +63,20 @@ Class Client implements User{
         function setMedia($media){
             $this->media=$media;
         }
+        function getNotify() {
+            $data = $this->connection->select('notify', 'WHERE id_destinate = '.$this->idClient);
+            if(!$data){
+                return array('id_notify'=>0,'date-notify'=>'0000-00-00','id_destinate'=>0,'id_emissor'=>0,'message'=>'Not notify','visibility'=>1);
+            }
+            foreach ($data as $value) {
+                $this->notify[]=$value;
+            }
+            return $this->notify;
+        }
+
+        function setNotify($notify) {
+            $this->notify = $notify;
+        }
 
         public function registerUser() {//Usa a funçao insert de Connection -- Exclusivo de User
             $client = array('name_user' => $this->name, 'id_conta' => 1,
@@ -76,17 +91,17 @@ Class Client implements User{
         }
 
 
-        public function requestRelationship($idUser) {//Exclusivo de User
+        public function requestRelationship($idUser) {
             $date = date("Y-m-d");
-            $data = array('id_marketer'=>$idUser, 'id_client'=>  $this->idClient,'date_relationship'=>$date);
+            $data = array('id_marketer'=>$idUser, 'id_client'=>  $this->idClient,'date_relationship'=>$date,'status'=>1);
             $this->connection->insert('relationship', $data);
+            $this->connection->update('request_relationship', array('visibilite'=>0),"id_client = {$this->idClient} and id_marketer = {$idUser}");
 	}
-
-        public function changeAccount($newAccount) {//Usa a Função Update de Connection -- Exclusivo de User
-            $data = array("id_conta"=>$newAccount);
-            $this->connection->update('user', $data," id_user = ".$this->idClient);
+        function changeAccount($newAccount){
+            $this->connection->update('user', array('id_account'=>2,'id_coordinate'=>$this->coordinates),"id_user = {$this->idClient}");
         }
-        function ToString(){
+        
+        function toString(){
             return "Nome: ".$this->name." Qualificação: ".$this->qualification."<br/>";
         }
 

@@ -53,7 +53,6 @@ class Connection{
         $fields = implode(', ', $fields);
         $where = ($where)?" WHERE {$where}":null;
         $query = "UPDATE {$table} SET {$fields}{$where}";
-        echo $query;
         return $this->execute($query);
     }
     function delete($table,$where){
