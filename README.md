@@ -17,9 +17,9 @@ uma forma de venda online para comodidade dos seus usuários.
 !["Diagrama de classes"](/documentos/Diagrama_de_Classes.png)
 
 # Modelo Entidade Relacionamento
+
 !["Modelo Entidade Relacionamento"](/documentos/Diagrama_Entidade_Relacionamento.png)
 
 # Diagrama de Estrutura da solução
 !["Diagrama de Estrutura"](/documentos/Diagrama_Arquitetura_Solucao.png)
- 
  
