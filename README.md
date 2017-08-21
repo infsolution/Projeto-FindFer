@@ -12,7 +12,7 @@ pessoas a comprarem em feiras e aumentar o fluxo de pessoas nas feiras e consequ
 uma forma de venda online para comodidade dos seus usuários.
 
 # Diagrama de caso de uso
-!["Diagrama de caso de uso"](/Documentos/Diagrama_de_cas0_de_uso.png)
+!["Diagrama de caso de uso"](/Documentos/Diagrama_de_caso_de_uso.png)
 # Diagrama de classes
 !["Diagrama de classes"](/Documentos/Diagrama_de_Classes.png)
 
