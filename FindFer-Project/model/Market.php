@@ -1,6 +1,6 @@
 <?php
 
-Class Market{
+Class Market extends Connection{
         private $idMarket;
         private $name;
         private $description;
@@ -8,6 +8,7 @@ Class Market{
 	private $perimeter;
         private $marketStalls;
         function __construct($name) {
+            parent::__construct();
             $this->name = $name;
         }
 }

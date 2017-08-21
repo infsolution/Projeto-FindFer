@@ -1,9 +1,10 @@
 <?php
-class Qualification{
+class Qualification extends Connection{
     private $idQualification;
     private $sender;
     private $qualification;
     function __construct($qualification, $sender) {
+        parent::__construct();
         $this->qualification=$qualification;
         $this->sender=$sender;
     }

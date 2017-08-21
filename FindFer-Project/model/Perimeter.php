@@ -1,8 +1,9 @@
 <?php
-class Perimeter{
+class Perimeter extends Connection{
     private $idPerimeter;
     private $coordinates;
     function __construct($coordinates) {
+        parent::__construct();
         $this->coordinates = $coordinates;
     }
     function getIdPerimeter() {

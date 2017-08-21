@@ -1,6 +1,6 @@
 <?php
 
-Class Sale{
+Class Sale extends Connection{
         private $idSale;
         private $products;
 	private $marketer;
@@ -8,6 +8,7 @@ Class Sale{
 	private $value;
 	private $date;
 	function __construct($client, $marketer) {
+            parent::__construct();
             $this->client = $client;
             $this->marketer = $marketer;
         }

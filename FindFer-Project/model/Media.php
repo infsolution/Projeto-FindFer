@@ -1,16 +1,20 @@
 <?php
-class Media{
+require_once 'Connection.php';
+class Media extends Connection{
     private $idMedia;
     private $name;
     private $path;
     private $type;
+    private $owner;
+    private $connection;
     function __construct($name, $path) {
+        parent::__construct();
         $this->name = $name;
         $this->path = $path;
     }
     
     function toString(){
-        return "{$this->path}{$this->name}";
+        return "{$this->path}/{$this->name}";
     }
     function getIdMedia() {
         return $this->idMedia;
@@ -26,6 +30,9 @@ class Media{
 
     function getType() {
         return $this->type;
+    }
+    function getOwner() {
+        return $this->owner;
     }
 
     function setIdMedia($idMedia) {
@@ -43,6 +50,17 @@ class Media{
     function setType($type) {
         $this->type = $type;
     }
-
+    function setOwner($owner) {
+        $this->owner = $owner;
+    }    
+    function newMedia($idOwner){
+        $media = array('name_media'=>  $this->name,'path_media'=>  $this->path,'id_media_type'=>  $this->type,'id_owner'=>$idOwner);
+        $this->insert('media', $media);
+    }
+    function upDateMedia($name,$newPath,$type){
+        $media = array('name_media'=>$name,'path_media'=>$newPath,'id_media_type'=>$type);
+        $this->update('media', $media, 'id_media = '.$this->idMedia);
+    }
+    
 
 }
