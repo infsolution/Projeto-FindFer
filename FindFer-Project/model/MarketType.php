@@ -1,5 +1,6 @@
 <?php
-class MarketType{
+require_once 'Connection.php';
+class MarketType extends Connection{
     private $idType;
     private $name;
     private $description;

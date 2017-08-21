@@ -1,11 +1,13 @@
 <?php
-class MarketStall{
+require_once 'Connection.php';
+class MarketStall extends Connection{
     private $idMarketStall;
     private $name;
     private $marketer;
     private $coordinates;
     private $media;
     function __construct($name="MarketStall") { //TODO - MarketStall deve ter um ID no construtor? (Pra evitar Invalid State)
+        parent::__construct();
         $this->name = $name;
     }
     function getIdMarketStall(){
@@ -42,12 +44,12 @@ class MarketStall{
             $mktstall = array('name_mktstall' => $this->name, 'id_mktstall' => $this->idMarketStall,
                             'marketer' => $this->marketer, 'media' =>  $this->media,
                             'id_coordinate' =>  $this->coordinates);
-            $this->connection->insert('mktstall', $mktstall);
+            $this->insert('mktstall', $mktstall);
             
 	}
     public function changeAccount($newAccount) {//Update (TODO/A fazer)
             $data = array("id_conta"=>$newAccount);
-            $this->connection->update('user', $data," id_user = ".$this->idClient);
+            $this->update('user', $data," id_user = ".$this->idClient);
         }
     //GetMarketer já tem, com os getters/setters
 }

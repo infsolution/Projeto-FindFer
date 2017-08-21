@@ -1,10 +1,11 @@
 <?php
 
-Class Coordinate{
+Class Coordinate extends Connection{
         private $idCoordinate;
         private $longitude;
 	private $latitude;
         function __construct($longitude, $latitude) {
+            parent::__construct();
             $this->longitude = $longitude;
             $this->latitude = $latitude;
         }

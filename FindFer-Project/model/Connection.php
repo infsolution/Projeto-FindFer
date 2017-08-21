@@ -1,13 +1,11 @@
 <?php
-class Connection{
+abstract class Connection{
     private $user;
     private $password;
     private $db;
     private $server;
     private static $pdo;
     protected $sql;
-    protected $criteria;
-    protected $entity;
     protected $columnValues;
     public function __construct(){
         $this->server = "localhost";

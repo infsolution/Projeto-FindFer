@@ -1,6 +1,7 @@
 <?php
 require_once 'User.php';
-class Marketer implements User{
+require_once 'Conncetiono.php';
+class Marketer extends Connection implements User{
     private $idMarketer;
     Private $name;
     private $qualification;
@@ -11,9 +12,9 @@ class Marketer implements User{
     private $notify;
     private $connection;
         function __construct($name, $coordinates) {
+        parent::__construct();
         $this->name=$name;
-        $this->coordinates = $coordinates;
-        $this->connection = new Connection();
+        $this->coordinates = $coordinates;;
         }
 
     function getIdMarketer(){

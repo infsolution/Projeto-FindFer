@@ -1,6 +1,6 @@
 <?php
-require_once '../model/Client.php';
-require_once '../model/Marketer.php';
+//require_once '../model/Client.php';
+//require_once '../model/Marketer.php';
 class LoadUser{
     private $user;
     function __construct() {
@@ -14,5 +14,7 @@ class LoadUser{
         $this->user = $user;
     }
 
-    
+    function getList($list){
+        return $list;
+    }
 }
