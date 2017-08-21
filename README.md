@@ -12,14 +12,14 @@ pessoas a comprarem em feiras e aumentar o fluxo de pessoas nas feiras e consequ
 uma forma de venda online para comodidade dos seus usuários.
 
 # Diagrama de caso de uso
-!["Diagrama de caso de uso"](/documentos/Diagrama_de_cas0_de_uso.png)
+!["Diagrama de caso de uso"](/Documentos/Diagrama_de_cas0_de_uso.png)
 # Diagrama de classes
-!["Diagrama de classes"](/documentos/Diagrama_de_Classes.png)
+!["Diagrama de classes"](/Documentos/Diagrama_de_Classes.png)
 
 # Modelo Entidade Relacionamento
 
-!["Modelo Entidade Relacionamento"](/documentos/Diagrama_Entidade_Relacionamento.png)
+!["Modelo Entidade Relacionamento"](/Documentos/Diagrama_Entidade_Relacionamento.png)
 
 # Diagrama de Estrutura da solução
-!["Diagrama de Estrutura"](/documentos/Diagrama_Arquitetura_Solucao.png)
+!["Diagrama de Estrutura"](/Documentos/Diagrama_Arquitetura_Solucao.png)
  
