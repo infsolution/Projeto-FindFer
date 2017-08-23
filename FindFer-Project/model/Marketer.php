@@ -10,7 +10,6 @@ class Marketer extends Connection implements User{
     private $clients;
     private $media;
     private $notify;
-    private $connection;
         function __construct($name, $coordinates) {
         parent::__construct();
         $this->name=$name;

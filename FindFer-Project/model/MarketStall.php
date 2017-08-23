@@ -49,7 +49,7 @@ class MarketStall extends Connection{
 	}
     public function changeAccount($newAccount) {//Update (TODO/A fazer)
             $data = array("id_conta"=>$newAccount);
-            $this->update('user', $data," id_user = ".$this->idClient);
+            $this->update($table, $data," id_user = ".$this->marketer);
         }
     //GetMarketer já tem, com os getters/setters
 }

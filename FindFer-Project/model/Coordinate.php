@@ -15,5 +15,18 @@ Class Coordinate extends Connection{
         function getLatitude(){
             return $this->latitude;
         }
+        function setIdCoordinate($idCoordinate) {
+            $this->idCoordinate = $idCoordinate;
+        }
+
+        function setLongitude($longitude) {
+            $this->longitude = $longitude;
+        }
+
+        function setLatitude($latitude) {
+            $this->latitude = $latitude;
+        }
+
+
 	
 }

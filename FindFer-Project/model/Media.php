@@ -6,7 +6,6 @@ class Media extends Connection{
     private $path;
     private $type;
     private $owner;
-    private $connection;
     function __construct($name, $path) {
         parent::__construct();
         $this->name = $name;
