@@ -25,5 +25,10 @@ class MarketType extends Connection{
     function setDescription($description){
         $this->idClient=$id;
     }
+
+    public function getQuery($table, $params, $fields) {
+        
+    }
+
 }
 

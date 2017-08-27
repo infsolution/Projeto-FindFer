@@ -60,5 +60,8 @@ Class Sale extends Connection{
             $this->date = $date;
         }
 
+    public function getQuery($table, $params, $fields) {
+        
+    }
 
 }

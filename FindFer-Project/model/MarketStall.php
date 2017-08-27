@@ -4,9 +4,10 @@ class MarketStall extends Connection{
     private $idMarketStall;
     private $name;
     private $marketer;
+    private $market;
     private $coordinates;
     private $media;
-    function __construct($name="MarketStall") { //TODO - MarketStall deve ter um ID no construtor? (Pra evitar Invalid State)
+    function __construct($name) {
         parent::__construct();
         $this->name = $name;
     }
@@ -25,6 +26,10 @@ class MarketStall extends Connection{
     function getMarketer(){
         return $this->idClient;
     }
+    function getMarket() {
+        return $this->market;
+    }
+    
     function setMarketer($marketer){
         $this->marketer=$marketer;
     }
@@ -40,17 +45,16 @@ class MarketStall extends Connection{
     function setMedia($media){
         $this->media=$media;
     }
-    public function registerMarketStall() {//Insert
+    public function registerMarketStall() {
             $mktstall = array('name_mktstall' => $this->name, 'id_mktstall' => $this->idMarketStall,
                             'marketer' => $this->marketer, 'media' =>  $this->media,
                             'id_coordinate' =>  $this->coordinates);
             $this->insert('mktstall', $mktstall);
             
 	}
-    public function changeAccount($newAccount) {//Update (TODO/A fazer)
-            $data = array("id_conta"=>$newAccount);
-            $this->update($table, $data," id_user = ".$this->marketer);
+    function getQuery($table, $params = null, $fields = '*') {
+            $params = ($params)?" {$params}":null;
+            return "SELECT {$fields} FROM {$table}{$params}";
         }
-    //GetMarketer já tem, com os getters/setters
 }
 

@@ -59,7 +59,10 @@ class Account extends Connection{
     function setSaleValue($saleValue) {
         $this->saleValue = $saleValue;
     }
-
+    function getQuery($table, $params = null, $fields = '*') {
+            $params = ($params)?" {$params}":null;
+            return "SELECT {$fields} FROM {$table}{$params}";
+        }
 
 
 }

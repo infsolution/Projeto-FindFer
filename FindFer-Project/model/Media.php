@@ -60,6 +60,9 @@ class Media extends Connection{
         $media = array('name_media'=>$name,'path_media'=>$newPath,'id_media_type'=>$type);
         $this->update('media', $media, 'id_media = '.$this->idMedia);
     }
-    
+
+    public function getQuery($table, $params, $fields) {
+        
+    }
 
 }

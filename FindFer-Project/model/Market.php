@@ -50,5 +50,8 @@ Class Market extends Connection{
             $this->marketStalls = $marketStalls;
         }
 
-
+        function getQuery($table, $params = null, $fields = '*') {
+            $params = ($params)?" {$params}":null;
+            return "SELECT {$fields} FROM {$table}{$params}";
+        }
 }
