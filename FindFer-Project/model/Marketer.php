@@ -100,5 +100,9 @@ class Marketer extends Connection implements User{
             return "Nome: ".$this->name." Qualificação: ".$this->qualification."<br/>";
         }
 
+    public function getQuery($table, $params, $fields) {
+        
+    }
+
 }
 

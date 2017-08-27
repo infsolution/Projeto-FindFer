@@ -42,8 +42,10 @@ Class Product extends Connection{
             $this->media = $media;
         }
 
-
+    public function getQuery($table, $params, $fields) {
         
+    }
+
 }
 
 ?>

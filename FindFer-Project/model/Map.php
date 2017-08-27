@@ -23,9 +23,8 @@ Class Map extends Connection{
         return $this->markets;
     }
 
+    public function getQuery($table, $params, $fields) {
+        
+    }
 
-    
-
-
-    
 }

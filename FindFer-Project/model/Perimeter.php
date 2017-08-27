@@ -22,5 +22,8 @@ class Perimeter extends Connection{
         $this->coordinates = $coordinates;
     }
 
+    public function getQuery($table, $params, $fields) {
+        
+    }
 
 }

@@ -29,4 +29,9 @@ class Qualification extends Connection{
     function addQualification(){
         
     }
+
+    public function getQuery($table, $params, $fields) {
+        
+    }
+
 }

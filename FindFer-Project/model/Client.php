@@ -99,8 +99,11 @@ Class Client extends Connection implements User{
         function changeAccount($newAccount){
             $this->update('user', array('id_account'=>$newAccount,'id_coordinate'=>$this->coordinates),"id_user = {$this->idClient}");
         }
-        
-        function toString(){
+        function getQuery($table, $params = null, $fields = '*') {
+            $params = ($params)?" {$params}":null;
+            return "SELECT {$fields} FROM {$table}{$params}";
+        }
+                function toString(){
             return "Nome: ".$this->name." Qualificação: ".$this->qualification."<br/>";
         }
 

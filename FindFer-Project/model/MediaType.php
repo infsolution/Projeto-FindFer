@@ -35,4 +35,8 @@ class MediaType extends Connection{
         return $this->name;
     }
 
+    public function getQuery($table, $params, $fields) {
+        
+    }
+
 }

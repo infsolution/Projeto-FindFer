@@ -80,6 +80,8 @@ class Poster extends Connection{
         
     }
 
-
+    public function getQuery($table, $params, $fields) {
+        
+    }
 
 }

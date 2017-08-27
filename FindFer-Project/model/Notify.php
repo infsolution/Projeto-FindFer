@@ -31,5 +31,8 @@ class Notify extends Connection{
         $this->idDestinatio = $idDestinatio;
     }
 
+    public function getQuery($table, $params, $fields) {
+        
+    }
 
 }
