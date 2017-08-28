@@ -61,7 +61,7 @@ class Media extends Connection{
         $this->update('media', $media, 'id_media = '.$this->idMedia);
     }
 
-    public function getQuery($table, $params, $fields) {
+    public function getQuery($params, $fields) {
         
     }
 

@@ -58,7 +58,7 @@ abstract class Connection{
         $query = "DELETE FROM {$table}{$where}";
         return $this->execute($query);
     }
-    function select($table, $params,$fields){
+    function select($query){
         //$params = ($params)?" {$params}":null;
         $query = $this->getQuery($table, $params,$fields); //"SELECT {$fields} FROM {$table}{$params}";
         $link = $this->connect();
@@ -68,5 +68,5 @@ abstract class Connection{
         }
         return $result;
     }
-    abstract function getQuery($table, $params,$fields);
+    abstract function getQuery($params,$fields);
 }

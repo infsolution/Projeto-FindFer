@@ -10,9 +10,12 @@ class Poster extends Connection{
     private $dateTime;
     private $coupon;
     private $medias;
-    function __construct($title) {
+    private $marketer;
+            function __construct($title) {
         parent::__construct();
-        $this-> title= $title;
+        date_default_timezone_set("America/Sao_Paulo");
+        setlocale(LC_ALL, 'pt_BR');
+        $this-> title = $title;
     }
             
     function getIdPoster() {
@@ -39,7 +42,9 @@ class Poster extends Connection{
     function getMedias() {
         return $this->medias;
     }
-
+    function getMarketer() {
+        return $this->marketer;
+    }
         
     function setIdPoster($idPoster) {
         $this->idPoster = $idPoster;
@@ -66,22 +71,31 @@ class Poster extends Connection{
     function setMedias($medias) {
         $this->medias = $medias;
     }
+    function setMarketer($marketer) {
+        $this->marketer = $marketer;
+    }
+    function data(){
+        return date('Y-m-d H:i:s');
+    } 
     function newPoster(){
-        $poster = array('title'=>  $this->title,'description'=>  $this->description, 'value'=>  $this->value
+        $this->dateTime = date('Y-m-d H:i:s');
+        echo $this->dateTime;
+        $poster = array('id_marketer'=>$this->marketer, 'title'=>  $this->title,'description'=>  $this->description, 'value'=>  $this->value
                 ,'date_time'=> $this->dateTime);
         $this->insert('poster', $poster);
     }
     
-    function getPosters(){
-        
+    function getListPosters(){
+        return $this->select( $params, $fields);
     }
             
     function toString(){
         
     }
 
-    public function getQuery($table, $params, $fields) {
-        
+    public function getQuery($params, $fields) {
+        $params = ($params)?" {$params}":null;
+        return "SELECT {$fields} FROM poster {$params}";
     }
 
 }

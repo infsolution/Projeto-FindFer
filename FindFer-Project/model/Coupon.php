@@ -53,7 +53,7 @@ class Coupon extends Connection{
         
     }
 
-    public function getQuery($table, $params, $fields) {
+    public function getQuery($params, $fields) {
         
     }
 
