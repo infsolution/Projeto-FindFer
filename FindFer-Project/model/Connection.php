@@ -58,9 +58,9 @@ abstract class Connection{
         $query = "DELETE FROM {$table}{$where}";
         return $this->execute($query);
     }
-    function select($query){
+    function select($params){
         //$params = ($params)?" {$params}":null;
-        $query = $this->getQuery($table, $params,$fields); //"SELECT {$fields} FROM {$table}{$params}";
+        $query = $this->getQuery($params); //"SELECT {$fields} FROM {$table}{$params}";
         $link = $this->connect();
         $result = $link->query($query)->fetchAll(PDO::FETCH_ASSOC);
         if(!$result){
@@ -68,5 +68,5 @@ abstract class Connection{
         }
         return $result;
     }
-    abstract function getQuery($params,$fields);
+    abstract function getQuery($params);
 }
