@@ -27,7 +27,7 @@ Class Coordinate extends Connection{
             $this->latitude = $latitude;
         }
 
-    public function getQuery($table, $params, $fields) {
+    public function getQuery() {
         
     }
 

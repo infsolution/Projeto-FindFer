@@ -11,11 +11,13 @@ class Poster extends Connection{
     private $coupon;
     private $medias;
     private $marketer;
-            function __construct($title) {
+    private $marketPlace;
+    private $params;
+    function __construct($marketPlace) {
         parent::__construct();
         date_default_timezone_set("America/Sao_Paulo");
         setlocale(LC_ALL, 'pt_BR');
-        $this-> title = $title;
+        $this-> marketPlace = $marketPlace;
     }
             
     function getIdPoster() {
@@ -46,6 +48,10 @@ class Poster extends Connection{
         return $this->marketer;
     }
         
+    function getMarketPlace() {
+        return $this->marketPlace;
+    }
+    
     function setIdPoster($idPoster) {
         $this->idPoster = $idPoster;
     }
@@ -74,28 +80,23 @@ class Poster extends Connection{
     function setMarketer($marketer) {
         $this->marketer = $marketer;
     }
-    function data(){
-        return date('Y-m-d H:i:s');
-    } 
+    function setMarketPlace($marketPlace) {
+        $this->marketPlace = $marketPlace;
+    }
+    
     function newPoster(){
         $this->dateTime = date('Y-m-d H:i:s');
         echo $this->dateTime;
         $poster = array('id_marketer'=>$this->marketer, 'title'=>  $this->title,'description'=>  $this->description, 'value'=>  $this->value
-                ,'date_time'=> $this->dateTime);
+                ,'date_time'=> $this->dateTime, 'id_coupon'=>  $this->coupon,'id_market_place'=>$this->marketPlace);
         $this->insert('poster', $poster);
     }
     
-    function getListPosters(){
-        return $this->select( $params, $fields);
-    }
-            
-    function toString(){
-        
-    }
-
-    public function getQuery($params, $fields) {
-        $params = ($params)?" {$params}":null;
-        return "SELECT {$fields} FROM poster {$params}";
+    function getListPosters($params){
+       return $this->select($params);
+    }            
+    public function getQuery($params) {
+        return "SELECT {$params['fields']} FROM poster WHERE id_market_place = {$params['params']}";
     }
 
 }
