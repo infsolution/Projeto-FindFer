@@ -76,7 +76,7 @@ Class Client extends Connection implements User{
         function setNotify($notify) {
             $this->notify = $notify;
         }
-
+        
         public function registerUser() {//Usa a funçao insert de Connection -- Exclusivo de User
             $client = array('name_user' => $this->name, 'id_conta' => 1,
                             'qualification' => 0, 'id_media' =>  $this->media,
@@ -84,12 +84,11 @@ Class Client extends Connection implements User{
             $this->insert('user', $client);
             
 	}
-        function listMarketer(){
-             $marketer = $this->select('user');
-            return $marketer;
+        function listMarketer($params){
+             return $this->select($params);
         }
-
-
+        
+        
         public function requestRelationship($idUser) {
             $date = date("Y-m-d");
             $data = array('id_marketer'=>$idUser, 'id_client'=>  $this->idClient,'date_relationship'=>$date,'status'=>1);
@@ -99,12 +98,12 @@ Class Client extends Connection implements User{
         function changeAccount($newAccount){
             $this->update('user', array('id_account'=>$newAccount,'id_coordinate'=>$this->coordinates),"id_user = {$this->idClient}");
         }
-        function getQuery($table, $params = null, $fields = '*') {
+        function getQuery($params) {
             $params = ($params)?" {$params}":null;
             return "SELECT {$fields} FROM {$table}{$params}";
         }
-                function toString(){
+        function toString(){
             return "Nome: ".$this->name." Qualificação: ".$this->qualification."<br/>";
         }
-
+        
 }

@@ -17,8 +17,9 @@ class LoadPosters{
     function selectPosts(){
         $post = new Poster($this->marketPlace);
         $posters = $post->getListPosters($this->params);
-         header('Content-Type: application/json');
-        echo json_encode(array("posts"=>$posters));
+        header('Content-Type: application/json');
+        $jdata = json_encode(array("posts"=>$posters));
+        header("Location: ../view/JsonDataView.php?data={$jdata}");
     }
 }
 
