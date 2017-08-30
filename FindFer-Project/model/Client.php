@@ -62,7 +62,7 @@ Class Client extends Connection implements User{
         function setMedia($media){
             $this->media=$media;
         }
-        function getNotify() {
+        function getNotify() {//TODO - deve ir pra Classe notificação
             $data = $this->select('notify', 'WHERE id_destinate = '.$this->idClient);
             if(!$data){
                 return array('id_notify'=>0,'date-notify'=>'0000-00-00','id_destinate'=>0,'id_emissor'=>0,'message'=>'Not notify','visibility'=>1);

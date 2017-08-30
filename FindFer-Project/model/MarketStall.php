@@ -46,15 +46,22 @@ class MarketStall extends Connection{
         $this->media=$media;
     }
     public function registerMarketStall() {
-            $mktstall = array('name_mktstall' => $this->name, 'id_mktstall' => $this->idMarketStall,
-                            'marketer' => $this->marketer, 'media' =>  $this->media,
-                            'id_coordinate' =>  $this->coordinates);
-            $this->insert('mktstall', $mktstall);
+            $marketStall = array('name' => $this->name,'id_marketer' => $this->marketer, 
+                'id_coordinate' =>  $this->coordinates,'media' =>  $this->media,
+                'id_market'=>  $this->market);
+            $this->insert('market_stall', $marketStall);
             
 	}
-    function getQuery($table, $params = null, $fields = '*') {
-            $params = ($params)?" {$params}":null;
-            return "SELECT {$fields} FROM {$table}{$params}";
+    function editMarketStall(){
+        $marketStall = array('name'=>$this->name,'id_coordinate'=>  $this->coordinates, 'id_midia'=>  $this->media);
+        $this->update('market_stall', $marketStall, "id_market_stall={$this->idMarketStall}");
+    } 
+    function loadMarketStall($params){
+        return $this->select($params);
+    }
+            
+    function getQuery($params){
+            return "SELECT {$params} FROM market_stall"; //TODO - Implementar Query
         }
 }
 

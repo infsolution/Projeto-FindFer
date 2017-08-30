@@ -2,6 +2,7 @@
 require_once 'Connection.php';
 class Account extends Connection{
     private $idAccount;
+    private $name;
     private $typeAccount;
     private $value;
     private $clientsNumber;
@@ -16,6 +17,10 @@ class Account extends Connection{
         return $this->idAccount;
     }
 
+    function getName() {
+        return $this->name;
+    }
+    
     function getTypeAccount() {
         return $this->typeAccount;
     }
@@ -40,6 +45,10 @@ class Account extends Connection{
         $this->idAccount = $idAccount;
     }
 
+    function setName($name) {
+        $this->name = $name;
+    }
+    
     function setTypeAccount($typeAccount) {
         $this->typeAccount = $typeAccount;
     }
@@ -60,7 +69,14 @@ class Account extends Connection{
         $this->saleValue = $saleValue;
     }
     function newAccount(){
-        
+        $account = array('name_account'=>  $this->name,'type_account'=>  $this->typeAccount,'value'=>  $this->value,
+            'clients_number'=>  $this->clientsNumber,'posts_number'=>  $this->postersNumber,'sales_value'=>  $this->saleValue);
+        $this->insert('account', $account);
+    }
+    function updateAccount(){//TODO 
+        $account = array('name_account'=>  $this->name,'type_account'=>  $this->typeAccount,'value'=>  $this->value,
+            'clients_number'=>  $this->clientsNumber,'posts_number'=>  $this->postersNumber,'sales_value'=>  $this->saleValue);
+        $this->update('account', $account,"id_account={$this->idAccount}");
     }
             
     function loadAccount($params){

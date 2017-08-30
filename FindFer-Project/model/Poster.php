@@ -86,7 +86,6 @@ class Poster extends Connection{
     
     function newPoster(){
         $this->dateTime = date('Y-m-d H:i:s');
-        echo $this->dateTime;
         $poster = array('id_marketer'=>$this->marketer, 'title'=>  $this->title,'description'=>  $this->description, 'value'=>  $this->value
                 ,'date_time'=> $this->dateTime, 'id_coupon'=>  $this->coupon,'id_market_place'=>$this->marketPlace);
         $this->insert('poster', $poster);

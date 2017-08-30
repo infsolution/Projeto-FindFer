@@ -6,6 +6,7 @@ Class Market extends Connection{
         private $description;
 	private $perimeter;
         private $marketStalls;
+        private $map;
         function __construct($name) {
             parent::__construct();
             $this->name = $name;
@@ -30,6 +31,10 @@ Class Market extends Connection{
             return $this->marketStalls;
         }
 
+        function getMap() {
+            return $this->map;
+        }
+        
         function setIdMarket($idMarket) {
             $this->idMarket = $idMarket;
         }
@@ -50,8 +55,21 @@ Class Market extends Connection{
             $this->marketStalls = $marketStalls;
         }
 
-        function getQuery($table, $params = null, $fields = '*') {
-            $params = ($params)?" {$params}":null;
-            return "SELECT {$fields} FROM {$table}{$params}";
+        function setMap($map) {
+            $this->map = $map;
+        }
+        
+        function newMarket(){
+            $market = array('name'=>  $this->name, 'description'=>  $this->description,'id_perimeter'=>  $this->perimeter,'id_map'=>  $this->map);
+            $this->insert('market', $market);
+        }
+        function loadMarket($params){
+            return $this->select($params);
+        }    
+        function getQuery($params) {
+            return "SELECT {$params} FROM market";
+        }
+        function toString(){
+            return $this->name;
         }
 }
