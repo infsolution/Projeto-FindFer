@@ -3,7 +3,6 @@ require_once 'Connection.php';
 class MediaType extends Connection{
     private $idType;
     private $name;
-    private $connection;
     function __construct($name) {
         parent::__construct();
         $this->name = $name;
@@ -34,9 +33,13 @@ class MediaType extends Connection{
     function toString(){
         return $this->name;
     }
+    function loadType($params){
+        return $this->select($params);
+    }
 
-    public function getQuery() {
-        
+
+    public function getQuery($params) {
+        return "SELECT * FROM media_type";
     }
 
 }

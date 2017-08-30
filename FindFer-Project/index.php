@@ -11,18 +11,16 @@ and open the template in the editor.
     </head>
     <body>
         <?php
-        require_once 'model/Poster.php';
-        /*$post = new Poster('Banana');
-        $post->setDescription("Banana de hoje muito boa");
-        $post->setValue(9.99);
-        $post->setDateTime('2017-08-20 21:45:23');
-        $post->newPoster();*/
-        //var_dump($cli->listMarketer());
-        //date_default_timezone_set("America/Sao_Paulo");
-        //setlocale(LC_ALL, 'pt_BR');
-        $post = new Poster("ok");
+        require_once 'model/Account.php';
+        $ac = new Account(2);
+        $ac->setClientsNumber(50);
+        $ac->setName("Freemium");
+        $ac->setPostersNumber(5);
+        $ac->setSaleValue(550.00);
+        $ac->setValue(0.0);
+        var_dump($ac->loadAccount());
         
-        echo $post->data();
+        
         ?>
     </body>
 </html>

@@ -27,8 +27,24 @@ Class Coordinate extends Connection{
             $this->latitude = $latitude;
         }
 
-    public function getQuery() {
-        
-    }
+        function newCoordinate(){
+            $coordinate = array('latitude'=>  $this->latitude, 'longitude'=>  $this->longitude);
+            $this->insert('coordinate', $coordinate);
+        }
+
+        function editCoordinate($latitude, $longitude){
+            $coordinate = array('latitude'=>$latitude,'longitude'=>$longitude);
+            $this->update('coordinate', $coordinate, "id_coordinate={$this->idCoordinate}");
+        }
+                
+        function loadCoordinates($params){
+            return $this->select($params);
+        }
+        public function getQuery($params) {
+            if(is_array($params)){
+                return "SELECT {$params['fields']} FROM coordinate WHERE {$params['colunm']}={$params['value']}";
+            }
+            return "SELECT {$params} FROM coordinate";
+        }
 
 }

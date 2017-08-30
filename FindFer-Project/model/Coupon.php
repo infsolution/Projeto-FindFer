@@ -52,9 +52,13 @@ class Coupon extends Connection{
     function toString(){
         
     }
+    function loadCoupon($code){
+       return $this->select($code);
+    }
+
 
     public function getQuery($params) {
-        
+        return "SELECT * FROM coupon WHERE code = {$params}";
     }
 
 }

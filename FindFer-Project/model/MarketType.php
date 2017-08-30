@@ -26,8 +26,17 @@ class MarketType extends Connection{
         $this->idClient=$id;
     }
 
-    public function getQuery($table, $params, $fields) {
-        
+    function newTypeMarket(){
+        $typeMarket = array('name'=>  $this->name,'description'=>  $this->description);
+        $this->insert('type_market', $typeMarket);
+    }
+
+    function loadType($params){
+        return $this->select($params);
+    }
+
+    public function getQuery($params) {
+        return "SELECT * FROM type_market WHERE id_type_market={$params}";
     }
 
 }

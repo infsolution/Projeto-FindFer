@@ -61,8 +61,12 @@ class Media extends Connection{
         $this->update('media', $media, 'id_media = '.$this->idMedia);
     }
 
+    function loadMedia($params){
+        return $this->select($params);
+    }
+
     public function getQuery($params) {
-        
+        return "SELECT * FROM media WHERE id_owner={$params}";
     }
 
 }
