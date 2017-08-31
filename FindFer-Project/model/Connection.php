@@ -68,5 +68,5 @@ abstract class Connection{
         }
         return $result;
     }
-    abstract function getQuery($params);
+    abstract function getQuery($tables ,$fields = '*',$params=null);
 }

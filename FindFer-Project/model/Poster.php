@@ -93,9 +93,23 @@ class Poster extends Connection{
     
     function getListPosters($params){
        return $this->select($params);
-    }            
-    public function getQuery($params) {
-        return "SELECT {$params['fields']} FROM poster WHERE id_market_place = {$params['params']}";
     }
+    function loadPoster(){
+        return $this->select($params);
+    }
+
+    public function getQuery($params) {
+        if(is_array($params)){
+        return "SELECT {$params['fields']} FROM poster WHERE id_market_place = {$params['params']}";
+        }
+        if(is_int($params)){
+          return "SELECT value FROM poster WHERE id_poster={$params}";  
+        }
+        if(is_string($params)){
+        return "SELECT {$params} FROM poster";
+        }
+        return "SELECT * FROM poster";
+    }
+    
 
 }

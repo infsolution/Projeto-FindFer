@@ -1,12 +1,14 @@
 <?php
-
+require_once 'Connection.php';
+require_once 'Poster.php';
 Class Sale extends Connection{
         private $idSale;
-        private $products;
+        private $posters;
 	private $marketer;
 	private $client;
 	private $value;
-	private $date;
+        private $coupon;
+        private $date;
 	function __construct($client, $marketer) {
             parent::__construct();
             $this->client = $client;
@@ -16,8 +18,8 @@ Class Sale extends Connection{
             return $this->idSale;
         }
 
-        function getProducts() {
-            return $this->products;
+        function getPosters() {
+            return $this->posters;
         }
 
         function getMarketer() {
@@ -32,6 +34,11 @@ Class Sale extends Connection{
             return $this->value;
         }
 
+        function getCoupon() {
+            return $this->coupon;
+        }
+
+                
         function getDate() {
             return $this->date;
         }
@@ -40,8 +47,8 @@ Class Sale extends Connection{
             $this->idSale = $idSale;
         }
 
-        function setProducts($products) {
-            $this->products = $products;
+        function setPosters($posters) {
+            $this->posters = $posters;
         }
 
         function setMarketer($marketer) {
@@ -56,12 +63,39 @@ Class Sale extends Connection{
             $this->value = $value;
         }
 
+        function setCoupon($coupon) {
+            $this->coupon = $coupon;
+        }
+        
         function setDate($date) {
             $this->date = $date;
         }
+        function newSale(){
+            $sale = array('date_sale'=>date('Y-m-d'),'sale_value'=>0,'id_coupon'=>$this->coupon,
+                'id_marketer'=>  $this->marketer, 'id_client'=>$this->client, 'status'=>0);
+            $this->insert('sale', $sale);
+        }
+        function addProduct($quantity, Poster $poster){
+            $add = array('id_sale'=>$this->idSale,'id_poster'=>  $poster->getIdPoster(), 'quantity'=>$quantity);
+            $this->insert('sale_poster', $add);
+            $this->updateSale($poster->getValue()*$quantity);
+        }
+        function finishSale(){
+            $sale = array('status'=>1);
+            $this->update('sale', $sale, "id_sale={$this->idSale}");
+        }
+                
+        function updateSale($value){
+            $this->value+=$value;
+            $sale = array('sale_value'=>  $this->value);
+            $this->update('sale', $sale, "id_sale={$this->idSale}");
+        }
 
-    public function getQuery($table, $params, $fields) {
-        
-    }
+        public function getQuery($params) {
+            if(is_array($params)){
+                return "SELECT {$params['fields']} FROM {$params['tables']}WHERE {$params['params']}";
+            }
+            return "SELECT * FROM sale";
+        }
 
 }
