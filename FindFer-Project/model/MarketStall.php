@@ -60,7 +60,7 @@ class MarketStall extends Connection{
         return $this->select($params);
     }
             
-    function getQuery($params){
+    function getQuery($table, $fields = '*', $params=NULL){
             return "SELECT {$params} FROM market_stall"; //TODO - Implementar Query
         }
 }

@@ -11,5 +11,6 @@
  * @author Cicero
  */
 interface Observer {
-    function addObserver();
+    //put your code here
+    function action();
 }

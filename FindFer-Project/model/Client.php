@@ -3,7 +3,7 @@ require_once 'User.php';
 require_once 'Connection.php';
 require_once 'Account.php';
 require_once 'Coordinate.php';
-Class Client extends Connection implements User,  Observer{
+Class Client extends Connection implements User{
         private $idClient;
         private $name;
         private $qualification;
@@ -98,16 +98,11 @@ Class Client extends Connection implements User,  Observer{
         function changeAccount($newAccount){
             $this->update('user', array('id_account'=>$newAccount,'id_coordinate'=>$this->coordinates),"id_user = {$this->idClient}");
         }
-        function getQuery($params) {
+        function getQuery($table, $fields = '*', $params=NULL) {
             $params = ($params)?" {$params}":null;
             return "SELECT {$fields} FROM {$table}{$params}";
         }
         function toString(){
             return "Nome: ".$this->name." Qualificação: ".$this->qualification."<br/>";
         }
-
-    public function addObserver() {
-        
-    }
-
 }

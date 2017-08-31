@@ -43,7 +43,7 @@ class Perimeter extends Connection{
     }
 
 
-    public function getQuery($params) {
+    public function getQuery($table, $fields = '*', $params=NULL) {
         if(is_array($params)){
             return "";
         }

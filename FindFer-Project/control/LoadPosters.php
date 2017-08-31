@@ -1,4 +1,5 @@
 <?php
+require_once '../model/Poster.php';
 if($_SERVER["REQUEST_METHOD"]=="POST"){
     require_once '../model/Poster.php';
     $marketPlace = $_POST['market_place'];
@@ -16,7 +17,7 @@ class LoadPosters{
     }
     function selectPosts(){
         $post = new Poster($this->marketPlace);
-        $posters = $post->getListPosters($this->params);
+        $posters = $post->getListPosters('*',$this->params);
         header('Content-Type: application/json');
         $jdata = json_encode(array("posts"=>$posters));
         header("Location: ../view/JsonDataView.php?data={$jdata}");

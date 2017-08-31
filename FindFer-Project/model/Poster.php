@@ -2,6 +2,7 @@
 require_once 'Connection.php';
 require_once 'Media.php';
 require_once 'Coupon.php';
+require_once '../control/timezone/TimeZone.php';
 class Poster extends Connection{
     private $idPoster;
     private $title;
@@ -15,8 +16,7 @@ class Poster extends Connection{
     private $params;
     function __construct($marketPlace) {
         parent::__construct();
-        date_default_timezone_set("America/Sao_Paulo");
-        setlocale(LC_ALL, 'pt_BR');
+        new TimeZone();
         $this-> marketPlace = $marketPlace;
     }
             
@@ -91,24 +91,19 @@ class Poster extends Connection{
         $this->insert('poster', $poster);
     }
     
-    function getListPosters($params){
-       return $this->select($params);
+    function getListPosters($fields, $params){
+       return $this->select('poster',$fields,$params);
     }
+    
     function loadPoster(){
-        return $this->select($params);
+        return $this->select('poster','*',$params);
     }
 
-    public function getQuery($params) {
-        if(is_array($params)){
-        return "SELECT {$params['fields']} FROM poster WHERE id_market_place = {$params['params']}";
-        }
-        if(is_int($params)){
-          return "SELECT value FROM poster WHERE id_poster={$params}";  
-        }
-        if(is_string($params)){
-        return "SELECT {$params} FROM poster";
-        }
-        return "SELECT * FROM poster";
+    public function getQuery($table, $fields='*', $params=NULL) {
+       if($params){
+           return "SELECT {$fields} FROM {$table} WHERE {$params}";
+       }
+       return "SELECT {$fields} FROM {$table}";
     }
     
 

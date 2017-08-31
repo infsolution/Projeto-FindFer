@@ -40,7 +40,7 @@ Class Coordinate extends Connection{
         function loadCoordinates($params){
             return $this->select($params);
         }
-        public function getQuery($params) {
+        public function getQuery($table, $fields = '*', $params=NULL) {
             if(is_array($params)){
                 return "SELECT {$params['fields']} FROM coordinate WHERE {$params['colunm']}={$params['value']}";
             }

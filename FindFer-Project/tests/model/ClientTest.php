@@ -19,7 +19,6 @@ class ClientTest extends PHPUnit_Framework_TestCase {
         $this->client = new Client("Michele",890);
         $this->client->setAccount(2);
         $this->client->setQualification(6.7);
-        $this->client->setMarketer(49);
         $this->client->setMedia("files-media");
     }
 
@@ -46,7 +45,7 @@ class ClientTest extends PHPUnit_Framework_TestCase {
      */
     public function testa_metodo_request_relationship() {
         // Remove the following lines when you implement this test.
-        $this->assertEquals(NULL, $this->client->requestRelationship());
+        $this->assertEquals(NULL, $this->client->requestRelationship(3));
     }
 
 }

@@ -83,7 +83,7 @@ class Account extends Connection{
         return $this->select($params);
     }
             
-    function getQuery($params) {
+    function getQuery($table, $fields = '*', $params=NULL) {
             if(!$params){
                 return "SELECT * FROM account";
             }

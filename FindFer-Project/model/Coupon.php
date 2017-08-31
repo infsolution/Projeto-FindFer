@@ -57,8 +57,8 @@ class Coupon extends Connection{
     }
 
 
-    public function getQuery($params) {
-        return "SELECT * FROM coupon WHERE code = {$params}";
+    public function getQuery($table, $fields='*', $params=NULL) {
+        return "SELECT {$fields} FROM {$table} WHERE code = {$params}";
     }
 
 }

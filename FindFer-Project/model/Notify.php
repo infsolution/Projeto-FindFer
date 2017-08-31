@@ -1,4 +1,6 @@
 <?php
+require_once '../control/timezone/TimeZone.php';
+require_once 'Connection.php';
 class Notify extends Connection{
     private $notify;
     private $dateNotify;
@@ -7,9 +9,12 @@ class Notify extends Connection{
     private $message;
     private $visibility;
             
-    function __construct($message) {
+    function __construct($emissor, $destinate, $message) {
         parent::__construct();
+        $this->emissor = $emissor;
+        $this->destinate = $destinate;
         $this->message = $message;
+        new TimeZone();
     }
     function getNotify() {
         return $this->notify;
@@ -44,7 +49,7 @@ class Notify extends Connection{
         $this->dateNotify = $dateNotify;
     }
 
-    function setdestinate($destinate) {
+    function setDestinate($destinate) {
         $this->destinate = $destinate;
     }
     function setEmissor($emissor) {
@@ -61,7 +66,7 @@ class Notify extends Connection{
 
         
     function loadNotify($params){
-        return $this->select($params);
+        return $this->select('notify','*',$params);
     }
     function newNotify(){
         $notify = array('date_notify'=>date('Y-m-d'),'id_destinate'=>  $this->destinate,
@@ -74,11 +79,8 @@ class Notify extends Connection{
     }
 
 
-    public function getQuery($params) {
-        if(is_array($params)){
-            return "";
-        }
-        return "SELECT * FROM notify WHERE visibility = 0 AND id_destinate={$this->destinate}";
+    public function getQuery($table, $fields = '*', $params=NULL) {
+        return "SELECT {$fields} FROM {$table} WHERE visibility = 0 AND id_destinate={$this->destinate}";
     }
 
 }
