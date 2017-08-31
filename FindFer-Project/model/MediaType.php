@@ -38,7 +38,7 @@ class MediaType extends Connection{
     }
 
 
-    public function getQuery($params) {
+    public function getQuery($table, $fields = '*', $params=NULL) {
         return "SELECT * FROM media_type";
     }
 

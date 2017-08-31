@@ -66,12 +66,17 @@ class Qualification extends Connection{
         $this->insert('qualification', $qualification);
     }
 
-    function loadQualification(){
-        
+    function loadQualification($fields){
+        $fullQualification = 0.0;
+        $qualification = $this->select('qualification',$fields,  $this->qualificated);
+        foreach ($qualification as $value) {
+            $fullQualification+=$value['value'];
+        }
+        return $fullQualification;
     }
 
-    public function getQuery($params) {
-        
+    public function getQuery($table, $fields = '*', $params=NULL) {
+        return "SELECT {$fields} FROM {$table} WHERE id_qualification = {$params}";
     }
 
 }

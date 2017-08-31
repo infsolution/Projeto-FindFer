@@ -66,7 +66,7 @@ Class Market extends Connection{
         function loadMarket($params){
             return $this->select($params);
         }    
-        function getQuery($params) {
+        function getQuery($table, $fields = '*', $params=NULL) {
             return "SELECT {$params} FROM market";
         }
         function toString(){

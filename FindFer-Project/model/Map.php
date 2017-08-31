@@ -41,7 +41,7 @@ Class Map extends Connection{
             return $this->markets;
     }
 
-    public function getQuery($params) {
+    public function getQuery($table, $fields = '*', $params=NULL) {
         return "SELECT {$fields} FROM map {$params}";
     }
 

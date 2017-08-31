@@ -11,15 +11,9 @@ and open the template in the editor.
     </head>
     <body>
         <?php
-        require_once 'model/Account.php';
-        $ac = new Account(2);
-        $ac->setClientsNumber(50);
-        $ac->setName("Freemium");
-        $ac->setPostersNumber(5);
-        $ac->setSaleValue(550.00);
-        $ac->setValue(0.0);
-        var_dump($ac->loadAccount());
-        
+        require_once 'control/timezone/TimeZone.php';
+        new TimeZone();
+        echo date('Y-m-d H:i:s');
         
         ?>
     </body>

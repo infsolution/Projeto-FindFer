@@ -35,7 +35,7 @@ class MarketType extends Connection{
         return $this->select($params);
     }
 
-    public function getQuery($params) {
+    public function getQuery($table, $fields = '*', $params=NULL) {
         return "SELECT * FROM type_market WHERE id_type_market={$params}";
     }
 

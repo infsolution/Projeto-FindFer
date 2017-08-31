@@ -91,7 +91,7 @@ Class Sale extends Connection{
             $this->update('sale', $sale, "id_sale={$this->idSale}");
         }
 
-        public function getQuery($params) {
+        public function getQuery($table, $fields = '*', $params=NULL) {
             if(is_array($params)){
                 return "SELECT {$params['fields']} FROM {$params['tables']}WHERE {$params['params']}";
             }

@@ -1,16 +1,8 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- * Description of TimeZone
- *
- * @author Cicero
- */
 class TimeZone {
-    //put your code here
+    function __construct() {   
+        date_default_timezone_set("America/Sao_Paulo");
+        setlocale(LC_ALL, 'pt_BR');
+    }
 }
