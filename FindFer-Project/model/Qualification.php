@@ -1,36 +1,76 @@
 <?php
 class Qualification extends Connection{
-    private $idQualification;
-    private $sender;
     private $qualification;
-    function __construct($qualification, $sender) {
+    private $qualificator;
+    private $qualificated;
+    private $dateQualification;
+    private $value;
+    private $coments;
+            
+    function __construct($qualificated) {
         parent::__construct();
-        $this->qualification=$qualification;
-        $this->sender=$sender;
+        $this->qualificated = $qualificated;
     }
-    function getIdQualification(){
-        
+   
+    function getQualification() {
+        return $this->qualification;
     }
-    function setIdQualification(){
-        
+
+    function getQualificator() {
+        return $this->qualificator;
     }
-    function getSender(){
-        
+
+    function getQualificated() {
+        return $this->qualificated;
     }
-    function serSender(){
-        
+
+    function getDateQualification() {
+        return $this->dateQualification;
     }
-    function getQualification(){
-        
+
+    function getValue() {
+        return $this->value;
     }
-    function setQualification(){
-        
+    
+    function getComents() {
+        return $this->coments;
     }
-    function addQualification(){
+
+    function setQualification($qualification) {
+        $this->qualification = $qualification;
+    }
+
+    function setQualificator($qualificator) {
+        $this->qualificator = $qualificator;
+    }
+
+    function setQualificated($qualificated) {
+        $this->qualificated = $qualificated;
+    }
+
+    function setDateQualification($dateQualification) {
+        $this->dateQualification = $dateQualification;
+    }
+
+    function setValue($value) {
+        $this->value = $value;
+    }
+    
+    function setComents($coments) {
+        $this->coments = $coments;
+    }
+
+    function newQualification(){
+        $qualification= array('id_qualificator'=>$this->qualificator, 'id_qualificated'=> $this->qualificated,
+            'date_qualification'=>date('Y-m-d'), 'valaue'=> $this->value, 'coments'=> $this->coments);
+        $this->insert('qualification', $qualification);
+    }
+
+    function loadQualification(){
         
     }
 
-    public function getQuery($table, $params, $fields) {
+    public function getQuery($params) {
         
     }
 

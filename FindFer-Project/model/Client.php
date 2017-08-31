@@ -3,7 +3,7 @@ require_once 'User.php';
 require_once 'Connection.php';
 require_once 'Account.php';
 require_once 'Coordinate.php';
-Class Client extends Connection implements User{
+Class Client extends Connection implements User,  Observer{
         private $idClient;
         private $name;
         private $qualification;
@@ -105,5 +105,9 @@ Class Client extends Connection implements User{
         function toString(){
             return "Nome: ".$this->name." Qualificação: ".$this->qualification."<br/>";
         }
+
+    public function addObserver() {
         
+    }
+
 }

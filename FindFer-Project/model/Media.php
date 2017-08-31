@@ -65,8 +65,9 @@ class Media extends Connection{
         return $this->select($params);
     }
 
-    public function getQuery($params) {
-        return "SELECT * FROM media WHERE id_owner={$params}";
+    public function getQuery($table, $fields, $params) {
+        $params = ($params)?"{$params}":null;
+        return "SELECT {$fields} FROM {$table} WHERE id_owner={$params}";
     }
 
 }
