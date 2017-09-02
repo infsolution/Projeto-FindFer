@@ -6,16 +6,17 @@ require_once 'Coordinate.php';
 Class Client extends Connection implements User{
         private $idClient;
         private $name;
+        private $nameUser;
+        private $password;
         private $qualification;
         private $account;
+        private $media;
         private $coordinates;
         private $marketers;
-        private $media;
+        private $email;
         private $notify;
-        function __construct($name, $coordinates) {
+        function __construct() {
             parent::__construct();
-            $this->name=$name;
-            $this->coordinates = $coordinates;
         }
         function getIdClient(){
             return $this->idClient;
@@ -41,7 +42,27 @@ Class Client extends Connection implements User{
         function setAccount($account){
             $this->account = $account;
         }
-                
+        function getNameUser() {
+            return $this->nameUser;
+        }
+
+        function getPassword() {
+            return $this->password;
+        }
+
+        function getCoordinates() {
+            return $this->coordinates;
+        }
+
+        function getMarketers() {
+            return $this->marketers;
+        }
+
+        function getEmail() {
+            return $this->email;
+        }
+
+                        
         function getMarketer(){
             $this->marketers=[];
             $data = $this->select('relationship','WHERE id_client='.$this->idClient);
@@ -76,16 +97,36 @@ Class Client extends Connection implements User{
         function setNotify($notify) {
             $this->notify = $notify;
         }
-        
-        public function registerUser() {//Usa a funçao insert de Connection -- Exclusivo de User
-            $client = array('name_user' => $this->name, 'id_conta' => 1,
-                            'qualification' => 0, 'id_media' =>  $this->media,
-                            'id_coordinate' =>  $this->coordinates);
-            $this->insert('user', $client);
+        function setNameUser($nameUser) {
+            $this->nameUser = $nameUser;
+        }
+
+        function setPassword($password) {
+            $this->password = $password;
+        }
+
+        function setCoordinates($coordinates) {
+            $this->coordinates = $coordinates;
+        }
+
+        function setMarketers($marketers) {
+            $this->marketers = $marketers;
+        }
+
+        function setEmail($email) {
+            $this->email = $email;
+        }
+
+        public function registerUser() {
+            $client = array('name'=>  $this->name,'user_name' => $this->nameUser, 'password'=>  $this->password,'id_conta' => 1,
+                            'id_media' =>  $this->media,'id_coordinate' =>  $this->coordinates,
+                            'email'=>  $this->email);
+                            
+            return $this->insert('user', $client);
             
 	}
         function listMarketer($params){
-             return $this->select($params);
+             return $this->select('*',$params);
         }
         
         
@@ -98,9 +139,11 @@ Class Client extends Connection implements User{
         function changeAccount($newAccount){
             $this->update('user', array('id_account'=>$newAccount,'id_coordinate'=>$this->coordinates),"id_user = {$this->idClient}");
         }
-        function getQuery($table, $fields = '*', $params=NULL) {
-            $params = ($params)?" {$params}":null;
-            return "SELECT {$fields} FROM {$table}{$params}";
+        function getQuery($fields, $params) {
+            if($params){
+            return "SELECT {$fields} FROM user WHERE {$params}";
+            }
+            return "SELECT {$fields} FROM user";
         }
         function toString(){
             return "Nome: ".$this->name." Qualificação: ".$this->qualification."<br/>";

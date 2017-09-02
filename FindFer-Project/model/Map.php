@@ -31,7 +31,7 @@ Class Map extends Connection{
     }
 
     function generateMap(){
-        $data = $this->select($params, $fields);
+        $data = $this->select('map', '*',$params);
         if(!$data){
             return array();//TODO nullObject
         }
@@ -42,7 +42,7 @@ Class Map extends Connection{
     }
 
     public function getQuery($table, $fields = '*', $params=NULL) {
-        return "SELECT {$fields} FROM map {$params}";
+        return "SELECT {$fields} FROM {$table} WHERE {$params}";
     }
 
 }

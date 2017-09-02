@@ -23,7 +23,7 @@ abstract class Connection{
             
             return self::$pdo;
             
-        } catch (\PDOException $e) {
+        } catch (\PDOException $ex) {
             echo $ex->getMessage();
         }
     }
@@ -58,15 +58,11 @@ abstract class Connection{
         $query = "DELETE FROM {$table}{$where}";
         return $this->execute($query);
     }
-    function select($params){
-        //$params = ($params)?" {$params}":null;
-        $query = $this->getQuery($params); //"SELECT {$fields} FROM {$table}{$params}";
+    function select($fields,$params){
+        $query = $this->getQuery($fields,$params);
         $link = $this->connect();
         $result = $link->query($query)->fetchAll(PDO::FETCH_ASSOC);
-        if(!$result){
-            return array('id_user'=>0,'name_user'=>'Nenhum usuário encontrado', 'id_conta'=>0,'qualification'=>0,'id_media'=>0,'id_coordinate'=>0);
-        }
         return $result;
     }
-    abstract function getQuery($tables ,$fields = '*',$params=null);
+    abstract function getQuery($fields,$params);
 }

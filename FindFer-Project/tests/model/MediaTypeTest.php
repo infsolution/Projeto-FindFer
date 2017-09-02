@@ -26,8 +26,36 @@ class MediaTypeTest extends PHPUnit_Framework_TestCase {
     protected function tearDown() {
         
     }
+    function testa_a_saida_de_get_name(){
+        $this->assertEquals('MPEG', $this->object->getName());
+    }
+    function testa_se_set_name_insere_o_nome_no_objeto(){
+        $this->object->setName('JPEG');
+        $this->assertEquals('JPEG', $this->object->getName());
+    }
+    function testa_se_set_id_type_insere_o_id_no_obejto(){
+        $this->object->setIdType(23);
+        $this->assertEquals(23, $this->object->getIdType());
+    }
+    
     function testa_funcao_to_string(){
         $this->assertEquals('MPEG', $this->object->toString());
     }
-
+    function testa_a_saida_de_get_query_sem_paramentros(){
+        $this->assertEquals("SELECT * FROM media_type",  $this->object->getQuery('*', null));
+    }
+    function testa_a_saida_de_get_query_com_paramentros(){
+        $this->assertEquals("SELECT * FROM media_type WHERE id_media_type = 2",  $this->object->getQuery('*', 'id_media_type = 2'));
+    }
+    function testa_se_load_type_retorna_uma_array_de_media_types(){
+        $this->assertNotEmpty($this->object->loadType('*',null));
+    }
+    function testa_o_retorno_de_load_type_com_paramentro_inexistente(){
+        $tes = $this->object->loadType('*',"id_media_type=908");
+        $this->assertEquals('Nenhum tipo de midia encontrado.',$tes['name_type']);
+    }
+    function testa_se_consulta_retorna_valor_correto(){
+        $test = $this->object->loadType('*','id_media_type=1');
+        $this->assertEquals('JPEG', $test[0]['name_type'] );
+    }
 }

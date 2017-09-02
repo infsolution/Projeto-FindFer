@@ -67,7 +67,7 @@ Class Market extends Connection{
             return $this->select($params);
         }    
         function getQuery($table, $fields = '*', $params=NULL) {
-            return "SELECT {$params} FROM market";
+            return "SELECT {$fields} FROM {$table} where {$params}";
         }
         function toString(){
             return $this->name;

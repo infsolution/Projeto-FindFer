@@ -33,13 +33,21 @@ class MediaType extends Connection{
     function toString(){
         return $this->name;
     }
-    function loadType($params){
-        return $this->select($params);
+    function loadType($fields, $params){
+        $res = $this->select($fields,$params);
+        if(!$res){
+            return array('id_media_type'=>0,'name_type'=>'Nenhum tipo de midia encontrado.');
+        }
+        return $res;
     }
 
 
-    public function getQuery($table, $fields = '*', $params=NULL) {
-        return "SELECT * FROM media_type";
+    public function getQuery($fields, $params) {
+        if($params){
+            return "SELECT {$fields} FROM media_type WHERE {$params}";
+        }
+        return "SELECT {$fields} FROM media_type";
+        
     }
 
 }

@@ -16,10 +16,14 @@ class ClientTest extends PHPUnit_Framework_TestCase {
      * This method is called before a test is executed.
      */
     protected function setUp() {
-        $this->client = new Client("Michele",890);
+        $this->client = new Client();
         $this->client->setAccount(2);
-        $this->client->setQualification(6.7);
-        $this->client->setMedia("files-media");
+        $this->client->setName('Frazao');
+        $this->client->setNameUser("FradoFrango");
+        $this->client->setPassword('fr-34');
+        $this->client->setMedia(6);
+        $this->client->setCoordinates(28);
+        $this->client->setEmail('fragoroso@gmail.com');
     }
 
     /**
@@ -36,7 +40,7 @@ class ClientTest extends PHPUnit_Framework_TestCase {
      */
     public function testa_metodo_register_user() {
         // Remove the following lines when you implement this test.
-        $this->assertEquals(6, $this->client->registerUser());
+        $this->assertEquals(11, $this->client->registerUser());
     }
 
     /**
