@@ -16,7 +16,7 @@ class LoadUserTest extends PHPUnit_Framework_TestCase {
      * This method is called before a test is executed.
      */
     protected function setUp() {
-        $this->object = new LoadUser;
+        $this->object = new LoadUser('catiane','1234');
     }
 
     /**
@@ -27,7 +27,7 @@ class LoadUserTest extends PHPUnit_Framework_TestCase {
         
     }
     function test(){
-        $this->assertEquals('JPEG',  $this->object->getList('ok'));
+        $this->assertEquals('',$this->object->defineUser());
         
     }
 

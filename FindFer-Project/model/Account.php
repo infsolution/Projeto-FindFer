@@ -80,14 +80,11 @@ class Account extends Connection{
     }
             
     function loadAccount($params){
-        return $this->select($params);
+        return $this->select('account','8',$params);
     }
             
     function getQuery($table, $fields = '*', $params=NULL) {
-            if(!$params){
-                return "SELECT * FROM account";
-            }
-            return "SELECT {$params['fields']} FROM account WHERE id_account = {$params['params']}";
+            return "SELECT $fields FROM $table WHERE{$params}";
         }
 
 

@@ -1,5 +1,6 @@
 <?php
 require_once 'Connection.php';
+require_once '../control/timezone/TimeZone.php';
 class Coupon extends Connection{
     private $idCoupon;
     private $code;
@@ -9,6 +10,7 @@ class Coupon extends Connection{
         parent::__construct();
         $this->validity = $validity;
         $this->value= $value;
+        new TimeZone();
     }
     function getIdCoupon() {
         return $this->idCoupon;
@@ -53,12 +55,12 @@ class Coupon extends Connection{
         
     }
     function loadCoupon($code){
-       return $this->select($code);
+       return $this->select('coupon','*',$code);
     }
 
 
     public function getQuery($table, $fields='*', $params=NULL) {
-        return "SELECT {$fields} FROM {$table} WHERE code = {$params}";
+        return "SELECT {$fields} FROM {$table} WHERE {$params}";
     }
 
 }

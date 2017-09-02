@@ -11,10 +11,12 @@ and open the template in the editor.
     </head>
     <body>
         <?php
-        require_once 'control/timezone/TimeZone.php';
-        new TimeZone();
-        echo date('Y-m-d H:i:s');
+        require_once 'control/MarketerFactory.php';
+        //require_once 'model/Marketer.php';
+        $mark = new MarketerFactory('catiane', '1234');
+        var_dump($mark->LoadUser());
         
+       // echo $mark->getName().', '.$mark->getEmail();
         ?>
     </body>
 </html>

@@ -1,5 +1,4 @@
 <?php
-require_once '../model/Poster.php';
 if($_SERVER["REQUEST_METHOD"]=="POST"){
     require_once '../model/Poster.php';
     $marketPlace = $_POST['market_place'];
