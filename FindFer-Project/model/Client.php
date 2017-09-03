@@ -125,11 +125,28 @@ Class Client extends Connection implements User{
             return $this->insert('user', $client);
             
 	}
+        function loadClient($user,$password){
+            $params = "user_name = '{$user}' AND password = '{$password}'";
+            $clie = $this->select('*', $params);
+            $client = new Client();
+            $client->setName("Opa! Nenhum usuário enscotrado.");
+            $client->setEmail("E-mail inexistente");
+            if($clie){
+                $client->setidClient($clie[0]['id_user']);
+                $client->setName($clie[0]['name']);
+                $client->setNameUser($clie[0]['user_name']);
+                $client->setPassword($clie[0]['password']);
+                $client->setAccount($clie[0]['id_conta']);
+                $client->setMedia($clie[0]['id_media']);
+                $client->setCoordinates($clie[0]['id_coordinate']);
+                $client->setEmail($clie[0]['email']);
+            }
+            return $client;
+        }
+                
         function listMarketer($params){
              return $this->select('*',$params);
         }
-        
-        
         public function requestRelationship($idUser) {
             $date = date("Y-m-d");
             $data = array('id_marketer'=>$idUser, 'id_client'=>  $this->idClient,'date_relationship'=>$date,'status'=>1);
