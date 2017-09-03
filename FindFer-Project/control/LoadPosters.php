@@ -2,7 +2,7 @@
 if($_SERVER["REQUEST_METHOD"]=="POST"){
     require_once '../model/Poster.php';
     $marketPlace = $_POST['market_place'];
-    $params = array('fields'=>'*','params'=>$marketPlace);
+    $params = "id_market_place ={$marketPlace}";
     $posters = new LoadPosters($params, $marketPlace);
     $posters->selectPosts();
 }
@@ -10,9 +10,9 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
 class LoadPosters{
     private $params; 
     private $marketPlace;
-            function __construct($params, $maketPlace) {
+            function __construct($params,$marketPlace) {
         $this->params = $params;
-        $this->marketPlace = $maketPlace;
+        $this->marketPlace = $marketPlace;
     }
     function selectPosts(){
         $post = new Poster($this->marketPlace);
