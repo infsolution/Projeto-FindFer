@@ -132,7 +132,8 @@ class Marketer extends Connection implements User{
         $marketer->setAccount($mar[0]['id_conta']);
         $marketer->setMedia($mar[0]['id_media']);
         $marketer->setCoordinates($mar[0]['Id_coordinate']);
-        $marketer->setEmail($mar[0]['email']);}
+        $marketer->setEmail($mar[0]['email']);
+        }
         return $marketer;
     }
 

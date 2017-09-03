@@ -28,6 +28,4 @@ class MarketerFactory implements UserFactory{
         $this->marketer = $this->marketer->loadMaketer($this->user,  $this->pass);
         return $this->marketer;
     }
-
-//put your code here
 }
