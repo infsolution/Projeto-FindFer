@@ -92,18 +92,18 @@ class Poster extends Connection{
     }
     
     function getListPosters($fields, $params){
-       return $this->select('poster',$fields,$params);
+       return $this->select($fields,$params);
     }
     
     function loadPoster(){
-        return $this->select('poster','*',$params);
+        return $this->select('*',$params);
     }
 
-    public function getQuery($table, $fields='*', $params=NULL) {
+    public function getQuery($fields, $params) {
        if($params){
-           return "SELECT {$fields} FROM {$table} WHERE {$params}";
+           return "SELECT {$fields} FROM poster WHERE {$params}";
        }
-       return "SELECT {$fields} FROM {$table}";
+       return "SELECT {$fields} FROM poster";
     }
     
 
