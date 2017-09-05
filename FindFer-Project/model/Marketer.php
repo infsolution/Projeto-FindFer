@@ -10,7 +10,7 @@ class Marketer extends Connection implements User{
     private $coordinates;
     private $account;
     private $clients;
-    private $media;
+    private $media='profile.png';
     private $email;
     private $notify;
     function __construct() {
@@ -45,7 +45,7 @@ class Marketer extends Connection implements User{
 
     function getClients() {
          $this->clients=[];
-            $data = $this->select('relationship','WHERE id_marketer='.$this->idMarketer);
+            $data = $this->select('id_client',array('table'=>'relationship','params'=>'id_marketer='.$this->idMarketer));
             if(!$data){
                 $data = array('id_relationship'=>0,'id_marketer'=>0,'id_client'=>0,'date_relationship'=>'0000-00-00');
             }
@@ -100,11 +100,11 @@ class Marketer extends Connection implements User{
     }
     public function registerUser() {
         $marketer = array('name'=>  $this->name,'name_user' => $this->nameUser,'password'=>  $this->password, 
-                        'id_conta' => 2,'id_media' =>  $this->media,
+                        'id_conta' => 2,'media' =>'images/profile/'.$this->media,
                         'id_coordinate' =>  $this->coordinates,'email'=>$this->email);
             $this->insert('user', $marketer);
     }
-
+    
     public function requestRelationship($idUser) {
         $date = date("Y-m-d");
         $data = array('id_client'=>$idUser, 'id_marketer'=>  $this->idMarketer,'date_request'=>$date,'visibilite'=>1);
@@ -139,7 +139,11 @@ class Marketer extends Connection implements User{
 
 
     public function getQuery($fields, $params) {
+        
         if($params){
+            if(is_array($params)){
+                return "SELECT {$fields} FROM {$params['table']} WHERE {$params['params']}";
+            }
              return "SELECT {$fields} FROM user WHERE {$params} AND id_conta > 1";
         }
         return "SELECT {$fields} FROM user";

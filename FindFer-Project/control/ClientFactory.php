@@ -28,4 +28,7 @@ class ClientFactory implements UserFactory{
         $this->client = $this->client->loadClient($this->user,  $this->pass);
         return $this->client;
     }
+    function uploadFile() {
+        
+    }
 }

@@ -38,7 +38,6 @@ abstract class Connection{
         return $link->lastInsertId();
     }
     function insert($table, array $data){
-        //$data =  $this->escape($data);
         $fields = implode(',',  array_keys($data));
         $values= "'".implode("', '", $data)."'";
         $query="INSERT INTO {$table}({$fields}) VALUES ({$values})";

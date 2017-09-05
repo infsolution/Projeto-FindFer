@@ -11,6 +11,7 @@ class Coupon extends Connection{
         $this->validity = $validity;
         $this->value= $value;
         new TimeZone();
+        $this->createCode();
     }
     function getIdCoupon() {
         return $this->idCoupon;
@@ -45,22 +46,26 @@ class Coupon extends Connection{
     function newCoupon(){
         $this->code = $this->createCode();
         $coupon = array('code'=>  $this->code,'value'=> $this->value,'validity'=>  $this->validity);
-        $this->insert('coupon', $coupon);
+        return $this->insert('coupon', $coupon);
     }
-    function createCode(){//TODO
+    function createCode(){
+        $code = "";
+        for($i =0;$i<=8;$i++){
+            $code = $code.rand(0, 9);
+        }
         return $code;
     }
             
     function toString(){
         
     }
-    function loadCoupon($code){
-       return $this->select('coupon','*',$code);
+    function loadCoupon($params){
+       return $this->select('*',$params);
     }
 
 
-    public function getQuery($table, $fields='*', $params=NULL) {
-        return "SELECT {$fields} FROM {$table} WHERE {$params}";
+    public function getQuery($fields, $params) {
+        return "SELECT {$fields} FROM coupon WHERE {$params}";
     }
 
 }

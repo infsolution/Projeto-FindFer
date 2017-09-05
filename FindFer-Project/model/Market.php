@@ -1,5 +1,6 @@
 <?php
-
+require_once 'Connection.php';
+require_once 'MarketStall.php';
 Class Market extends Connection{
         private $idMarket;
         private $name;
@@ -7,9 +8,9 @@ Class Market extends Connection{
 	private $perimeter;
         private $marketStalls;
         private $map;
-        function __construct($name) {
+        private $marker;
+                function __construct() {
             parent::__construct();
-            $this->name = $name;
         }
         function getIdMarket() {
             return $this->idMarket;
@@ -28,13 +29,16 @@ Class Market extends Connection{
         }
 
         function getMarketStalls() {
-            return $this->marketStalls;
+            $this->marketStalls = new MarketStall();
+            return $this->marketStalls->loadMarketStall();
         }
 
         function getMap() {
             return $this->map;
         }
-        
+        function getMarker() {
+            return $this->marker;
+        }        
         function setIdMarket($idMarket) {
             $this->idMarket = $idMarket;
         }
@@ -58,18 +62,24 @@ Class Market extends Connection{
         function setMap($map) {
             $this->map = $map;
         }
-        
+        function setMarker($marker) {
+            $this->marker = $marker;
+        }        
+        function loadPerimeter(){
+            $this->perimeter = new Perimeter(0, 0);
+            return $this->perimeter->loadPerimeter('id_local = '.$this->idMarket);
+        }
+                
         function newMarket(){
-            $market = array('name'=>  $this->name, 'description'=>  $this->description,'id_perimeter'=>  $this->perimeter,'id_map'=>  $this->map);
+            $market = array('name'=>  $this->name, 'description'=>  $this->description,'id_perimeter'=>  $this->perimeter,
+                'id_map'=>  $this->map,'id_coordinate_marker'=>  $this->marker);
             $this->insert('market', $market);
         }
         function loadMarket($params){
-            return $this->select($params);
+            return $this->select('*',$params);
         }    
-        function getQuery($table, $fields = '*', $params=NULL) {
-            return "SELECT {$fields} FROM {$table} where {$params}";
+        function getQuery( $fields, $params) {
+            return "SELECT {$fields} FROM market_stall where {$params}";
         }
-        function toString(){
-            return $this->name;
-        }
+
 }

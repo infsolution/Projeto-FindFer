@@ -10,10 +10,6 @@
  *
  * @author Cicero
  */
-interface Observable {
-
-    //put your code here
-    function addObserver(Observer $observer);
-    function removeObserver(Observer $observer);
-    function notifyObserver();
+interface NewUserFactory {
+    function newUser($user);
 }

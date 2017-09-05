@@ -57,11 +57,14 @@ class MarketStall extends Connection{
         $this->update('market_stall', $marketStall, "id_market_stall={$this->idMarketStall}");
     } 
     function loadMarketStall($params){
-        return $this->select($params);
+        return $this->select('*',$params);
     }
             
-    function getQuery($table, $fields = '*', $params=NULL){
-            return "SELECT {$params} FROM market_stall"; //TODO - Implementar Query
+    function getQuery($fields, $params){
+        if($params){
+            return "SELECT {$fields} FROM market_stall WHERE {$params}";
+        }
+        return "SELECT * FROM market_stall";
         }
 }
 
