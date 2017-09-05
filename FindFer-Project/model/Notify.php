@@ -9,7 +9,7 @@ class Notify extends Connection{
     private $message;
     private $visibility;
             
-    function __construct($emissor, $destinate, $message) {
+    function __construct($emissor, $destinate, $message){
         parent::__construct();
         $this->emissor = $emissor;
         $this->destinate = $destinate;
@@ -19,54 +19,38 @@ class Notify extends Connection{
     function getNotify() {
         return $this->notify;
     }
-
     function getDateNotify() {
         return $this->dateNotify;
     }
-
     function getDestinate() {
         return $this->destinate;
     }
-
     function getEmissor() {
         return $this->emissor;
     }
-
     function getMessage() {
         return $this->message;
     }
-
     function getVisibility() {
         return $this->visibility;
-    }
-
-        
+    }        
     function setNotify($notify) {
         $this->notify = $notify;
     }
-
     function setDateNotify($dateNotify) {
         $this->dateNotify = $dateNotify;
     }
-
     function setDestinate($destinate) {
         $this->destinate = $destinate;
     }
     function setEmissor($emissor) {
         $this->emissor = $emissor;
     }
-
     function setMessage($message) {
         $this->message = $message;
     }
-
     function setVisibility($visibility) {
         $this->visibility = $visibility;
-    }
-
-        
-    function loadNotify($params){
-        return $this->select('notify','*',$params);
     }
     function newNotify(){
         $notify = array('date_notify'=>date('Y-m-d'),'id_destinate'=>  $this->destinate,
@@ -77,10 +61,11 @@ class Notify extends Connection{
         $visibility = array('visibility'=>1);
         $this->update('notify', $visibility, "WHERE id_notify={$this->notify}");
     }
-
-
-    public function getQuery($table, $fields = '*', $params=NULL) {
-        return "SELECT {$fields} FROM {$table} WHERE visibility = 0 AND id_destinate={$this->destinate}";
+    function loadNotify($params){
+        return $this->select('*',$params);
+    }
+    public function getQuery($fields, $params) {
+        return "SELECT {$fields} FROM notify WHERE visibility = 0 AND id_destinate = {$params}";
     }
 
 }

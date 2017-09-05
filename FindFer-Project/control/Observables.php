@@ -10,7 +10,10 @@
  *
  * @author Cicero
  */
-interface Observer {
+interface Observables {
+
     //put your code here
-    function action($user);
+    function addObserver($observer);
+    function removeObserver($observer);
+    function notifyObserver();
 }

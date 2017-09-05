@@ -39,15 +39,13 @@ class Perimeter extends Connection{
     }
             
     function loadPerimeter($params){
-        return $this->select($params);
+        return $this->select('*',$params);
     }
-
-
-    public function getQuery($table, $fields = '*', $params=NULL) {
-        if(is_array($params)){
-            return "";
+    public function getQuery($fields, $params) {
+        if($params){
+            return "SELECT {$fields} FROM perimeter  WHERE {$params}";
         }
-        return "SELECT id_coordinate FROM perimeter WHERE id_local ={$this->local}";
+        return "SELECT * FROM perimeter";
     }
 
 }

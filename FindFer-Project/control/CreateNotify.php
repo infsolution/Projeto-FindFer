@@ -13,27 +13,27 @@
  */
 require '../model/Notify.php';
 require '../model/Poster.php';
+require '../model/Marketer.php';
 require_once 'Observer.php';
-class CreateNotify{
+class CreateNotify implements Observer{
     private $notify;
-    private $clients;
     private $poster;
     
     function __construct($poster) {
         $this->poster = $poster;
-        $this->loadClients();
     }
-    function loadClients(){
-        $this->clients = $this->poster->select('relationship','id_client',"id_marketer={$this->poster->getIdPoster()}");
-    }
+    function sendNotify(){
+        $marketer = new Marketer();
+        $marketer->setIdMarketer($this->poster->getMarketer());
+        $this->action($marketer->getClients());
+        } 
 
-    public function action() {
-        foreach ($this->clients as $value) {
-            $this->notify= new Notify($this->poster->getTitle());
-            $this->notify->setDestinate($value);
-            $this->notify->setEmissor($this->poster->getIdPoster());
+    function action($users) {
+        foreach ($users as $value) {
+            $this->notify = new Notify($this->poster->getMarketer(),$value['id_client'],$this->poster->getTitle());
+            //$this->notify->setDestinate($value['id_client']);
+            //$this->notify->setEmissor($this->poster->getIdPoster());
             $this->notify->newNotify();
-        }
-        
+        }   
     }
 }

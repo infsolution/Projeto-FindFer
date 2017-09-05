@@ -10,7 +10,7 @@ Class Client extends Connection implements User{
         private $password;
         private $qualification;
         private $account;
-        private $media;
+        private $media = "profile.png";
         private $coordinates;
         private $marketers;
         private $email;
@@ -119,7 +119,7 @@ Class Client extends Connection implements User{
 
         public function registerUser() {
             $client = array('name'=>  $this->name,'user_name' => $this->nameUser, 'password'=>  $this->password,'id_conta' => 1,
-                            'id_media' =>  $this->media,'id_coordinate' =>  $this->coordinates,
+                            'media' =>  $this->media,'id_coordinate' =>  $this->coordinates,
                             'email'=>  $this->email);
                             
             return $this->insert('user', $client);

@@ -21,5 +21,6 @@ class LoadPosters{
         $jdata = json_encode(array("posts"=>$posters));
         header("Location: ../view/JsonDataView.php?data={$jdata}");
     }
+    
 }
 
