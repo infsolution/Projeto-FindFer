@@ -2,6 +2,7 @@
 require_once 'Connection.php';
 Class Map extends Connection{
     private $map;
+    private $name;
     private $marketplace;
     private $markets;
     private $perimeter;
@@ -12,6 +13,9 @@ Class Map extends Connection{
     function getMap(){
         return $this->map;
     }    
+    function getName() {
+        return $this->name;
+    }            
     function getMarkets(){
         $this->markets = new Market();
         return $this->markets->loadMarket('id_map = '.$this->map);
@@ -24,7 +28,10 @@ Class Map extends Connection{
     }
     function setMap($map) {
         $this->map = $map;
-    }    
+    }  
+    function setName($name) {
+        $this->name = $name;
+    }        
     function setMarkets($markets) {
         $this->markets = $markets;
     }
@@ -44,6 +51,14 @@ Class Map extends Connection{
         }
             return $this->markets;
     }
+    function newMap(){
+        $map = array('name'=> $this->name,'marketplace'=>  $this->marketplace,
+                    'id_perimeter'=>  $this->perimeter);
+        $this->insert('map', $map);
+    }
+    function loadMap($params){
+        return $this->select("*", $params);
+    }
 
     public function getQuery($fields, $params) {
         if($params){
@@ -51,5 +66,4 @@ Class Map extends Connection{
         }
         return "SELECT * FROM map";
     }
-
 }

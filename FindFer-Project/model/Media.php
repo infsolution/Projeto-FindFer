@@ -11,41 +11,33 @@ class Media extends Connection{
         $this->name = $name;
         $this->path = $path;
     }
-    
     function toString(){
         return "{$this->path}/{$this->name}";
     }
     function getIdMedia() {
         return $this->idMedia;
     }
-
     function getName() {
         return $this->name;
     }
-
     function getPath() {
         return $this->path;
     }
-
     function getType() {
         return $this->type;
     }
     function getOwner() {
         return $this->owner;
     }
-
     function setIdMedia($idMedia) {
         $this->idMedia = $idMedia;
     }
-
     function setName($name) {
         $this->name = $name;
     }
-
     function setPath($path) {
         $this->path = $path;
     }
-
     function setType($type) {
         $this->type = $type;
     }
@@ -62,12 +54,11 @@ class Media extends Connection{
     }
 
     function loadMedia($params){
-        return $this->select($params);
+        return $this->select('*',$params);
     }
 
-    public function getQuery($table, $fields='*', $params=NULL) {
-        $params = ($params)?"{$params}":null;
-        return "SELECT {$fields} FROM {$table} WHERE id_owner={$params}";
+    public function getQuery($fields, $params) {
+        return "SELECT {$fields} FROM media WHERE id_owner={$params}";
     }
 
 }
