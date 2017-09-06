@@ -18,7 +18,7 @@ do sistema em classes de modelo, controle e visualização.
 !["Diagrama de caso de uso"](/Documentos/Diagrama_de_caso_de_uso.png)
 O diagrama de caso de uso modela as principais interações dos atores com o sistema.
 # Diagrama de classes
-!["Diagrama de classes"](/Documentos/Diagrama_de_Classes.png)
+!["Diagrama de classes"](/Documentos/Diagrma_de_Classes.png)
 O diagrama de classes mostra as classes e como estão relacionadas.
 
 # Modelo Entidade Relacionamento
