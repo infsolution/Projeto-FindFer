@@ -6,6 +6,13 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
     $posters = new LoadPosters($params, $marketPlace);
     $posters->selectPosts();
 }
+if($_SERVER["REQUEST_METHOD"]=="GET"){
+    require_once '../model/Poster.php';
+    $marketPlace = $_GET['market_place'];
+    $params = "id_market_place ={$marketPlace}";
+    $posters = new LoadPosters($params, $marketPlace);
+    $posters->selectPosts();
+}
 
 class LoadPosters{
     private $params; 

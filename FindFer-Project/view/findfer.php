@@ -1,5 +1,8 @@
 <?php
 session_start();
+require_once '../control/LoadPosters.php';
+$marketPlace=0;
+$jsonList = json_decode(file_get_contents("../control/LoadPosters.php?market_place=".$marketPlace));
 $today=date("Y-m-d");
 ?>
 
@@ -119,19 +122,13 @@ and open the template in the editor.
 
                     
                         <div class="col-md-6">
-                            <h1>Findfer</h1>
-                            <p>
-                                O Findfer é um aplicativo mobile que conecta feirantes e expositores a clientes e visitantes de feiras e eventos por meio de anúncios e localização gerando o trajeto exato do cliente até o feirante, também é disponibilizado aos feirantes realizar vendas pelo aplicativo.
-                            </p> 
-                            <strong>Principais funcionalidades</strong>
-                            <p>
-                                Mapa com localização de feiras próximas aos clientes, sendo que estando em uma dessa feiras será detalhado o local com informações de localização e trajeto de cada banca ou estande, sendo que, com os dados disponibilizados pelos anunciantes o sistema irá gerar um mapa do local detalhando a localização de cada feirante ou expositor dentro da feira, que mesmo sendo em local fechado irá disponibilizar informações precisas do local. Será exibida lista de anúncios de feirantes e/ou expositores, os anúncios detalham os produtos anunciados e possibilita ver detalhes dos anunciantes como localização exata e qualificação no sistema.
-Os feirantes/expositores que possuírem conta gratuita poderão manter relacionamento direto com um número limitado de clientes, uma condição para isso é que o cliente aceite esse relacionamento, o que possibilitará ao feirante um marketing direcionado. Mediante assinatura no app esse número é ampliado de acordo com o plano, os feirantes serão informados quando seus clientes (relacionados) estiverem nas proximidades do local, podendo gerar promoções voltadas para esse cliente em especial.
-Os clientes usuários de feira podem configurar os anúncios que desejam receber, gerando uma lista de produtos do seu interesse, os quais receberão foco por parte do sistema, o cliente poderá solicitar relacionamento com feirantes, desde que o feirante não tenha ultrapassado seu limite de relacionamentos (solicitação de relacionamento por parte do cliente gera melhor qualificação para o feirante) clientes podem se relacionar com quantos feirantes quiser. Clientes podem “pedir promoção” nos casos em que o cliente não se agrade dos preços encontrados ele pode fazer uma solicitação aos feirantes que baixem seus preços, caso algum feirante atenda ao cliente o mesmo é notificado e o trajeto até o feirante é traçado, este feirante é automaticamente qualificado pelo sistema e pode ser qualificado pelo cliente.
-Vendas pelo aplicativo estão disponíveis para os feirantes com contas gratuitas e pagas, o feirante cria sua “Banca virtual” detalhando os produtos e configura o raio em que pode fazer entregas, o sistema “exigirá um tempo máximo para entregas” e solicitará avaliação do serviço prestado pelo feirante ao cliente, o cliente poderá recusar a entrega caso os produtos esteja em desacordo com o anunciado. Para realizar a compra o cliente acessa uma banca virtual e cria uma cesta onde seleciona os produtos e poderá realizar o pagamento em dinheiro diretamente ao feirante ou pelo aplicativo com cartão de credito ou debito, o que será especificado na compra.  
-                            </p>
+                            <h1>FindFer</h1>
+                           
                         </div>
-                   
+                   <?php
+                        echo $jsonList;
+                        //var_dump($jsonList);
+                   ?>
                     
                         <div class="col-md-3">
                     
