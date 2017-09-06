@@ -16,27 +16,21 @@ class Coupon extends Connection{
     function getIdCoupon() {
         return $this->idCoupon;
     }
-
     function getCode() {
         return $this->code;
     }
-
     function getValidity() {
         return $this->validity;
     }
-    
     function getValue() {
         return $this->value;
     }
-
     function setIdCoupon($idCoupon) {
         $this->idCoupon = $idCoupon;
     }
-
     function setCode($code) {
         $this->code = $code;
     }
-
     function setValidity($validity) {
         $this->validity = $validity;
     }
@@ -55,18 +49,11 @@ class Coupon extends Connection{
         }
         return $code;
     }
-            
-    function toString(){
-        
-    }
     function loadCoupon($params){
        return $this->select('*',$params);
     }
-
-
     public function getQuery($fields, $params) {
         return "SELECT {$fields} FROM coupon WHERE {$params}";
     }
-
 }
 

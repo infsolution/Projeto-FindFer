@@ -15,8 +15,7 @@ require_once 'Connection.php';
 class AuxUser extends Connection{
     function __construct() {
         parent::__construct();
-    }
-            
+    }       
     function defineUser($user,$password){
         $params = "user_name = '{$user}' AND password = '{$password}'";
         $idAccount = $this->select('id_conta', $params);
@@ -28,6 +27,4 @@ class AuxUser extends Connection{
     public function getQuery($fields, $params) {
         return "SELECT {$fields} FROM user WHERE {$params}";
     }
-
-//put your code here
 }

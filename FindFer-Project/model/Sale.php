@@ -5,7 +5,6 @@ require_once 'Coupon.php';
 require_once '../control/timezone/TimeZone.php';
 Class Sale extends Connection{
     private $idSale;
-    private $posters;
     private $marketer;
     private $client;
     private $value;
@@ -19,9 +18,6 @@ Class Sale extends Connection{
     }
     function getIdSale() {
         return $this->idSale;
-    }
-    function getPosters() {
-        return $this->posters;
     }
     function getMarketer() {
         return $this->marketer;
@@ -40,9 +36,6 @@ Class Sale extends Connection{
     }
     function setIdSale($idSale) {
         $this->idSale = $idSale;
-    }
-    function setPosters($posters) {
-        $this->posters = $posters;
     }
     function setMarketer($marketer) {
         $this->marketer = $marketer;

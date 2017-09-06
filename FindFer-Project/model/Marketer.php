@@ -16,7 +16,6 @@ class Marketer extends Connection implements User{
     function __construct() {
         parent::__construct();
         }
-
     function getIdMarketer(){
         return $this->idMarketer;
     }
@@ -38,11 +37,9 @@ class Marketer extends Connection implements User{
     function getCoordinates() {
         return $this->coordinates;
     }
-
     function getAccount() {
         return $this->account;
     }
-
     function getClients() {
          $this->clients=[];
             $data = $this->select('id_client',array('table'=>'relationship','params'=>'id_marketer='.$this->idMarketer));
@@ -54,7 +51,6 @@ class Marketer extends Connection implements User{
             }
             return $this->clients;
     }
-
     function getMedia() {
         return $this->media;
     } 

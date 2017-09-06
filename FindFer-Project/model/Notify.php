@@ -7,8 +7,7 @@ class Notify extends Connection{
     private $destinate;
     private $emissor;
     private $message;
-    private $visibility;
-            
+    private $visibility;           
     function __construct($emissor, $destinate, $message){
         parent::__construct();
         $this->emissor = $emissor;

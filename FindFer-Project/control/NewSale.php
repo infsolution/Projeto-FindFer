@@ -20,13 +20,11 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
 }
 class NewSale {
     private $marketer;
-    private $client;
-            
+    private $client;            
     function __construct($marketer, $client) {
         $this->marketer = $marketer;
         $this->client = $client;
-    }
-    
+    } 
     function createSale(){
         $sale = new Sale($this->client, $this->marketer);
         $sale->setCoupon($_POST['id_coupon']);

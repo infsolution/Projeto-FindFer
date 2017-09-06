@@ -10,15 +10,12 @@ class MediaType extends Connection{
     function getIdType() {
         return $this->idType;
     }
-
     function getName() {
         return $this->name;
     }
-
     function setIdType($idType) {
         $this->idType = $idType;
     }
-
     function setName($name) {
         $this->name = $name;
     }
@@ -40,8 +37,6 @@ class MediaType extends Connection{
         }
         return $res;
     }
-
-
     public function getQuery($fields, $params) {
         if($params){
             return "SELECT {$fields} FROM media_type WHERE {$params}";
@@ -49,5 +44,4 @@ class MediaType extends Connection{
         return "SELECT {$fields} FROM media_type";
         
     }
-
 }

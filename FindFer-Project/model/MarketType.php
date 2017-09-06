@@ -5,6 +5,7 @@ class MarketType extends Connection{
     private $name;
     private $description;
     function __construct($name) {
+        parent::__construct();
         $this->name = $name;
     }
     function getidType(){
@@ -23,7 +24,7 @@ class MarketType extends Connection{
         return $this->description;
     }
     function setDescription($description){
-        $this->idClient=$id;
+        $this->idClient=$description;
     }
 
     function newTypeMarket(){
@@ -32,11 +33,11 @@ class MarketType extends Connection{
     }
 
     function loadType($params){
-        return $this->select('type_market','*',$params);
+        return $this->select('*',$params);
     }
 
-    public function getQuery($table, $fields = '*', $params=NULL) {
-        return "SELECT {$fields} FROM {$table} WHERE {$params}";
+    public function getQuery($fields, $params) {
+        return "SELECT {$fields} FROM type_market WHERE {$params}";
     }
 
 }
